@@ -7,6 +7,7 @@ font-family: 'Chivo', sans-serif;
 font-family: 'Festive', cursive; (footer) 
 shadow : rgb(207, 221, 223)*/
 
+
 html{
     margin: 0px;
     padding: 0px;
@@ -100,19 +101,21 @@ img{
     width: 100%;
 }
 
-@media screen and (max-width: 680px){
+@media (max-width: 680px){
     .top-nav-bar{
         display: contents;
+        overflow: hidden;
     }
     .header-logo{
         text-align: center;
     }
+
     .nav-bar-menu ul li a {
         height: 30px; 
         line-height: 30px;
         margin: 3px;
-        padding: 0px 15px;
-        font-size: 14px;
+        padding: 2px 8px 2px 8px;
+        font-size: 10px;
     }
     .hire-me button{
         display: none;

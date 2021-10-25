@@ -3,6 +3,7 @@
     padding: 30px;
     display: flex;
     justify-content: space-around;
+    width: 100%;
 }
 
     .hero-header-text{
@@ -59,6 +60,7 @@
     }
     .coding-platforms img:hover{
         box-shadow: 0px 0px 10px rgb(207, 221, 223);
+        transition: 0.3s ease-in-out;
     }
     .hero-header-iamge{
         margin: 3%;
@@ -85,26 +87,37 @@
     margin-top: 10px;
 }
 
-@media screen and (max-width: 680px){
+@media (max-width: 680px){
     .hero-header{
         display: contents;
+        min-width: 400px;
+    }
+    .header-logo p{
+        text-align: center;
     }
 
     .hero-header-text{
         line-height: 40px;
         margin: 3% 0% 2% 7%;
         padding: 5% 0% 2% 5%;
+
+    }
+
+    .random_text{
+        display: none;
     }
 
     #header-text1{
-        font-size: 20px;
+        font-size: 18px;
+        line-height: 10px;
+        max-width: 600px;
     }
 
     #header-text2{
-        font-size: 30px;
+        font-size: 24px;
     }
     .wrapper a{
-        font-size: 30px;
+        font-size: 24px;
     }
 
     .resume button{
@@ -116,7 +129,7 @@
         padding: 3%;
     }
     .hero-header-iamge img {
-        width: 350px;
+        width: 300px;
     }
 
     

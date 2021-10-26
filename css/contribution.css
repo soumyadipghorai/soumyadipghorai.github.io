@@ -43,3 +43,25 @@
     transition: 0.3s ease-in-out;
     transition: 0.4s ease-in;
 }
+
+@media (max-width: 680px){
+    .contribution h4{
+        font-size: 24px;
+    }
+
+    .company-div p{
+        display: none;
+    }
+
+    .ericsson{
+        width: 40px;
+    }
+
+    .gdsc{
+        width: 40px;
+    }
+
+    .estatus{
+        width: 40px;
+    }
+}

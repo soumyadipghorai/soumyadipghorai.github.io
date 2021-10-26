@@ -42,3 +42,34 @@
 .photo-container-1 img{
     width: 425px;
 }
+
+@media (max-width: 680px){
+    .photo-gallery{
+        margin: 0px 10px 10px 10px;
+        padding: 0px 10px 10px 10px;
+    }
+    .photo-gallery-text h4{
+        font-size: 24px;
+    }
+    .photo-gallery-text p{
+        font-size: 12px;
+    }
+
+    .photo-gallery-container{
+        margin: 10px;
+    }
+
+    .photo-container-1 img{
+        width: 125px;
+    }
+
+    .varticle-2{
+        /* display: none; */
+        max-width: 158px;
+    }
+
+    .varticle-1{
+        display: none;
+        /* max-height: 120px; */
+    }
+}

@@ -56,7 +56,7 @@
 }
 
 .skills-container {
-    width: 100%;
+    /* width: 100%; */
     background-color: #ddd;
     border-radius: 10px;
     height: 20px;
@@ -122,9 +122,18 @@
         padding: 5px;
     }
 
+    .skills-subflex{
+        width: 100%;
+    }
+
+    .skills-container{
+        min-width: 300px;
+    }
+
     .skills-flex1{
         padding: 2px;
         margin: 2px;
+        display: contents;
     }
 
     .skills-flex1 p{

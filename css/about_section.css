@@ -1,5 +1,5 @@
 .about-section{
-    margin: 20px 50px 20px 50px;
+    margin: 20px 50px 20px 5px;
     padding: 30px;
 }
 .about-section-main{
@@ -55,14 +55,14 @@
     letter-spacing: 1px;
 }
 
-.container {
+.skills-container {
     width: 100%;
     background-color: #ddd;
     border-radius: 10px;
     height: 20px;
 }
   
-.skills {
+.skills-container .skills {
     text-align: right;
     padding-top: 2px;
     padding-bottom: 2px;
@@ -72,10 +72,10 @@
     padding-right: 10px;
 }
   
-.python {width: 90%; background-color: #00887A;}
-.sql {width: 80%; background-color: #00887A;}
-.html {width: 65%; background-color: #00887A;}
-.ml {width: 60%; background-color: #00887A;}
+#python {width: 90%; background-color: #00887A;}
+#sql {width: 80%; background-color: #00887A;}
+#html {width: 65%; background-color: #00887A;}
+#ml {width: 60%; background-color: #00887A;}
 
 .skills-flex1{
     display: flex;
@@ -132,7 +132,7 @@
         padding: 5px 0px 0px 0px;
     }
 
-    .container {
+    .skills-container {
         height: 15px;
     }
       

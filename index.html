@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/about_section.css">
     <link rel="stylesheet" href="css/project.css">
     <!-- <link rel="stylesheet" href="css/education.css"> -->
+    <link rel="stylesheet" href="css/photo_section.css">
+    <link rel="stylesheet" href="css/footer.css">
     <script type="text/javascript" src="js/auto_typer.js"></script> <!-- auto typer-->
 </head>
 <body>
@@ -97,28 +99,28 @@
                 <div class="skills-flex1">
                     <div style="width: 50%;" class="skills-subflex">
                         <p>Python</p>
-                        <div class="container">
-                            <div class="skills python">90%</div>
+                        <div class="skills-container">
+                            <div class="skills python" id="python">90%</div>
                         </div>
                     </div>
                     <div style="width: 50%;" class="skills-subflex">
                         <p>SQL</p>
-                        <div class="container">
-                            <div class="skills sql">80%</div>
+                        <div class="skills-container">
+                            <div class="skills sql" id="sql">80%</div>
                         </div>
                     </div>
                 </div>
                 <div class="skills-flex1">
                     <div style="width: 50%;" class="skills-subflex">
                         <p>HTML | CSS</p>
-                        <div class="container">
-                            <div class="skills html">65%</div>
+                        <div class="skills-container">
+                            <div class="skills html" id="html">65%</div>
                         </div>
                     </div>
                     <div style="width: 50%;" class="skills-subflex">
                         <p>Machine Learning</p>
-                        <div class="container">
-                            <div class="skills ml">60%</div>
+                        <div class="skills-container">
+                            <div class="skills ml" id="ml">60%</div>
                         </div>
                     </div>
                 </div>
@@ -199,9 +201,18 @@
             <p>Here are some of my captures</p>
         </div>
         <div class="photo-gallery-container">
-            <img src="images/photo_gallery1.jpeg" alt="photo-gallery">
-            <img src="images/photo_gallery2.jpg" alt="photo-gallery">
-            <img src="images/photo_gallery3.jpg" alt="photo-gallery">
+            <div class="photo-container-1">
+                <img src="images/photo_gallery1.jpeg" alt="photo-gallery">
+                <img src="images/photo_gallery2.jpg" alt="photo-gallery">
+            </div>
+            <div class="photo-container-2">
+                <div class="photo-container-2-1">
+                    <img style="height: 385px;" src="images/photo_gallery4.jpeg" alt="photo-gallery">
+                </div>
+                <div class="photo-container-2-2">
+                    <img style="width: 525px;" src="images/photo_gallery3.jpg" alt="photo-gallery">
+                </div>
+            </div>
         </div>
     </section>
 
@@ -211,10 +222,9 @@
             <p>I have contributed to the following organizations</p>
         </div>
         <div class="contribution-image-container">
-            <img src="" alt="company1">
-            <img src="" alt="company1">
-            <img src="" alt="company1">
-            <img src="" alt="company1">
+            <img style="max-width: 150px;" src="images/company_1.png" alt="company1">
+            <img style="max-width: 150px;" src="images/company_2.svg" alt="company1">
+            <img style="max-width: 150px;" src="images/company_3.jpg" alt="company1">
         </div>
     </section>
 
@@ -239,9 +249,9 @@
             <h4> Follow Me</h4>
             <p>Let's be social</p>
             <div class="social-links">
-                <a href=""><img src="" alt="Linkedin"></a>
-                <a href=""><img src="" alt="Instagram"></a>
-                <a href=""><img src="" alt="Facebook"></a>
+                <a href=""><img src="images/social_media_1.png" alt="Linkedin"></a>
+                <a href=""><img src="images/social_media_2.png" alt="Instagram"></a>
+                <a href=""><img src="images/social_media_3.png" alt="Facebook"></a>
             </div>
         </div>
         <div class="copyright">

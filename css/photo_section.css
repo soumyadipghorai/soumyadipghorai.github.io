@@ -1,6 +1,6 @@
 .photo-gallery{
-    margin: 20px 50px 20px 50px;
-    padding: 30px;
+    margin: 0px 50px 20px 50px;
+    padding: 0px 30px 30px 30px;
 }
 
 .photo-gallery-text h4{
@@ -24,7 +24,8 @@
 
 .photo-gallery-container{
     display: flex;
-    margin: 20px 0px 10px 30px;
+    margin: 20px 0px 10px 40px;
+    max-width: 100%;
     /* justify-content: space-around; */
 }
 
@@ -39,5 +40,5 @@
 }
 
 .photo-container-1 img{
-    width: 420px;
+    width: 425px;
 }

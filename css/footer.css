@@ -49,6 +49,12 @@ footer{
 }
 
 @media (max-width: 680px){
+
+    footer{
+        margin: 10px;
+        padding: 10px;
+    }
+
     .follow-me h4{
         font-size: 18px;
     }
@@ -56,6 +62,7 @@ footer{
     .follow-me P{
         font-size: 14px;
         padding: 2px 0px 0px 2px;
+        margin: 5px;
     }
 
     .copyright{

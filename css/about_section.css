@@ -91,13 +91,14 @@
 .skills-subflex{
     margin: 0px 5px 0px 5px;
     padding: 0px 5px 0px 5px;
+    width: 50%;
 }
 
 .skills-subflex p{
     margin: 0px 0px 5px 5px ;
 }
 
-@media screen and (max-width: 680px){
+@media (max-width: 680px){
 
     .about-section{
         margin: 15px 10px 10px 10px;
@@ -127,7 +128,7 @@
     }
 
     .skills-container{
-        min-width: 300px;
+        min-width: 100%;
     }
 
     .skills-flex1{
@@ -158,5 +159,5 @@
     .about-section-skills-text p{
         font-size: 14px;
     }
-    
+
 }

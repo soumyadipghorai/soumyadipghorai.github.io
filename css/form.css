@@ -71,16 +71,60 @@
     padding: 2px 0px 2px 10px;
 }
 
-.contact-me-form::placeholder{
+.subject{
+    margin-left: 5px;
+}
+
+/* .contact-me-form::placeholder{
     font-family: sans-serif;
     font-size: 16px;
     font-weight: 300;
     letter-spacing: 1px;
     line-height: 20px;
     padding: 2px 0px 2px 10px;
-}
+} */
+
 @media (max-width: 680px){
     .contact-me{
-        display: none;
+        margin: 20px 10px;
+        padding: 10px;
+    }
+    .form-container{
+        margin: 0px;
+        padding: 0px;
+        display: contents;
+    }
+    .contact-me-text h4{
+        font-size: 24px;
+    }
+
+    .contact-me-text p{
+        font-size: 14px;
+    }
+
+    .contact-me-form p{
+        font-size: 14px;
+    }
+    .contact-me-form .input-box{
+        padding-left: 0px;
+        border-radius: 5px;
+    }
+
+    .contact-me-form .input-box{
+        height: 30px;
+        width: 100%;
+        margin: 0px;
+    }
+
+    .subject{
+        margin-left: 0px;
+    }
+
+    .input-box::placeholder{
+        color: white;
+    }
+
+    .contact-me-form button{
+        padding: 5px 10px ;
     }
 }

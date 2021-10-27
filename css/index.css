@@ -32,7 +32,7 @@ html{
         font-weight: 500;
         font-family: 'Chivo', sans-serif;
         letter-spacing: 2px;
-        color: #77A6F7;
+        color: #489add;
     }
 
     .ai{
@@ -45,7 +45,7 @@ html{
 
         .ai:hover{
             text-shadow: 0px 0px 3px #00887A;
-            color: #77A6F7;
+            color: #489add;
         }
 
     .nav-bar-menu ul {
@@ -62,7 +62,7 @@ html{
         letter-spacing: 1px;
         font-weight: 400;
         font-family: 'Ubuntu', sans-serif;
-        color: #77A6F7;
+        color: #489add;
     }
 
         .nav-bar-menu ul li a:hover{

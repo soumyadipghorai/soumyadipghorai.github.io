@@ -36,7 +36,7 @@ html{
     }
 
     .ai{
-        color: #00887A ;
+        color: black ;
         font-weight: 600;
         font-family: sans-serif;
         padding: 0px 5px 0px 0px;
@@ -44,8 +44,8 @@ html{
     }
 
         .ai:hover{
-            text-shadow: 0px 0px 3px #00887A;
-            color: #489add;
+            /* text-shadow: 0px 0px 3px #489add; */
+            color: #00887A;
         }
 
     .nav-bar-menu ul {
@@ -72,7 +72,7 @@ html{
             color: white;
         }
 
-    .hire-me button{
+    /* .hire-me button{
         padding: 15px 25px ;
         border-radius: 10px;
         text-transform: uppercase;
@@ -88,7 +88,7 @@ html{
 
         .hire-me button:hover{
             box-shadow: 1px 2px 10px rgb(129, 129, 129);
-        }
+        } */
 li{
     list-style: none;
 }
@@ -116,8 +116,5 @@ img{
         margin: 3px;
         padding: 2px 8px 2px 8px;
         font-size: 10px;
-    }
-    .hire-me button{
-        display: none;
     }
 }

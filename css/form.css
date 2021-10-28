@@ -1,6 +1,7 @@
 .contact-me{
     margin: 20px 50px 20px 5px;
     padding: 30px;
+    display: none;
 }
 
 .contact-me-text h4{

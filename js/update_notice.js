@@ -1,1 +1,1 @@
-alert("hello guys! This is verison 1 of ghorAI, please press the hire me button and ensure if its working or not");
+alert("hello guys this ghorAI and its version 1, please send your feedback on this page by clicking the hire me button! THANKS");

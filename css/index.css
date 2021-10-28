@@ -32,11 +32,11 @@ html{
         font-weight: 500;
         font-family: 'Chivo', sans-serif;
         letter-spacing: 2px;
-        color: #489add;
+        color: black;
     }
 
     .ai{
-        color: black ;
+        color: #00887A ;
         font-weight: 600;
         font-family: sans-serif;
         padding: 0px 5px 0px 0px;
@@ -44,8 +44,7 @@ html{
     }
 
         .ai:hover{
-            /* text-shadow: 0px 0px 3px #489add; */
-            color: #00887A;
+            text-shadow: 0px 0px 10px rgb(207, 221, 223);
         }
 
     .nav-bar-menu ul {
@@ -70,6 +69,7 @@ html{
             border-radius: 10px;
             background-color: #00887A;
             color: white;
+            transition: 0.2s linear;
         }
 
     /* .hire-me button{

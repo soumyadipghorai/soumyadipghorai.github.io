@@ -51,9 +51,10 @@
         font-size: 24px;
     }
     .photo-gallery-text p{
-        font-size: 10px;
+        font-size: 14px;
         padding: 1px 0px 1px 0px;
         margin: 2px 0px 2px 0px;
+        /* text-align: left; */
     }
 
     .photo-gallery-container{

@@ -48,6 +48,13 @@
 
     gtag('config', 'G-879LH4SZ1Z');
     </script>
+
+    <style>
+        .item-algin-center{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
     
@@ -57,15 +64,17 @@
             <div class="header-logo">
                 <p class="ghor">ghor<span class="ai">AI</span></p>
             </div>
-            <div class="nav-bar-menu">
-                <ul>
-                    <!-- <li class="nav-bar-menu-item"><a href="/" class="">home</a></li> -->
-                    <li class="nav-bar-menu-item"><a href="#about-me" class="">About</a></li>
-                    <li class="nav-bar-menu-item"><a href="#my-project" class="">Project</a></li>
-                    <li class="nav-bar-menu-item"><a href="#education" class="">Education</a></li>
-                    <li class="nav-bar-menu-item"><a href="#photo-gallery" class="">Gallery</a></li>
-                    <!-- <li class="nav-bar-menu-item"><a href="#contact-me" class="">Contact Me</a></li> -->
-                </ul>
+            <div class="item-algin-center">
+                <div class="nav-bar-menu">
+                    <ul>
+                        <!-- <li class="nav-bar-menu-item"><a href="/" class="">home</a></li> -->
+                        <li class="nav-bar-menu-item"><a href="#about-me" class="">About</a></li>
+                        <li class="nav-bar-menu-item"><a href="#my-project" class="">Project</a></li>
+                        <li class="nav-bar-menu-item"><a href="#education" class="">Education</a></li>
+                        <li class="nav-bar-menu-item"><a href="#photo-gallery" class="">Gallery</a></li>
+                        <!-- <li class="nav-bar-menu-item"><a href="#contact-me" class="">Contact Me</a></li> -->
+                    </ul>
+                </div>
             </div> 
             <!-- <div class="hire-me">
                 <a href="mailto:ghorai.soumyadip33@gmail.com"><button>Hire me</button></a>
@@ -106,8 +115,10 @@
                 </div>
             </div>
         </div>
-        <div class="hero-header-iamge">
-            <img src="images/header_image.jpg" alt="soumyadip ghorai main image">
+        <div class="item-algin-center">
+            <div class="hero-header-iamge">
+                <img src="images/header_image.jpg" alt="soumyadip ghorai main image">
+            </div>
         </div>
     </section>
 
@@ -216,17 +227,47 @@
         </div>
         <div class="project-container">
             <div class="container-project">
-                <a href="https://www.kaggle.com/soumyadipghorai/covid-19-vaccination-drive-india" target="_blank"><img src="images/kaggle_covid.png" alt="soumyadip ghorai kaggle data analysis project"></a>
+                <div class="project-image-container"> <!--  content  -->
+                    <a href="https://www.kaggle.com/soumyadipghorai/covid-19-vaccination-drive-india" target="_blank">
+                        <div class="content-overlay"></div>
+                        <img class="project-feature-image" src="images/kaggle_covid.png" alt="soumyadip ghorai kaggle data analysis project">
+                    </a>
+                    <div class="content-details">
+                        <a href="https://github.com/soumyadipghorai/News-Scraper" target="_blank">
+                            <button class="view-project">View Project</button>
+                        </a>
+                    </div>
+                </div>
                 <a href="https://www.kaggle.com/soumyadipghorai/covid-19-vaccination-drive-india" target="_blank"><h4>Covid-19 EDA</h4></a>
                 <p>A kaggle based EDA project where I captured various trends of covid vaccintion</p>
             </div>
             <div class="container-project">
-                <a href="https://github.com/soumyadipghorai/News-Scraper" target="_blank"><img src="images/news_scapper.png" alt="soumyadip ghorai newsapp data science project"></a>
+                <div class="project-image-container">
+                    <a href="https://github.com/soumyadipghorai/News-Scraper" target="_blank">
+                        <div class="content-overlay"></div>
+                        <img src="images/news_scapper.png" alt="soumyadip ghorai newsapp data science project">
+                    </a>
+                    <div class="content-details">
+                        <a href="https://github.com/soumyadipghorai/News-Scraper" target="_blank">
+                            <button class="view-project">View Project</button>
+                        </a>
+                    </div>
+                </div>
                 <a href="https://github.com/soumyadipghorai/News-Scraper" target="_blank"><h4>News Scrapper</h4></a>
                 <p>Flask based web app which scraps multiple news websites on real time</p>
             </div>
             <div class="container-project">
-                <a href="https://github.com/soumyadipghorai/Timeseries-analysis-dogecoin" target="_blank"><img src="images/dogecoin.jpg" alt="soumyadip ghorai Dogecoin data analysis project"></a>
+                <div class="project-image-container">
+                    <a href="https://github.com/soumyadipghorai/Timeseries-analysis-dogecoin" target="_blank">
+                        <div class="content-overlay"></div>
+                        <img src="images/dogecoin.jpg" alt="soumyadip ghorai Dogecoin data analysis project">
+                    </a>
+                    <div class="content-details">
+                        <a href="https://github.com/soumyadipghorai/News-Scraper" target="_blank">
+                            <button class="view-project">View Project</button>
+                        </a>
+                    </div>
+                </div>
                 <a href="https://github.com/soumyadipghorai/Timeseries-analysis-dogecoin" target="_blank"><h4>Doge Coin</h4></a>
                 <p>Graduation Final year project on Doge coin. Applied various statistical methods</p>
             </div>
@@ -238,36 +279,36 @@
         <div class="education-college">
             <h4>Education</h4>
         </div>
-        <div class="history-tl-container">
-            <ul class="tl">
-                <li class="tl-item" ng-repeat="item in retailer_history">
-                    <div class="timestamp">
-                    2018 Oct - 2021 Oct
-                    </div>
-                    <div class="item-title">University of Calcutta</div>
-                    <div class="degree">BSc Statistics</div>
-                    <div class="item-detail">Represented my college in State Level meet</div>
-                </li>
-                <li class="tl-item" ng-repeat="item in retailer_history">
-                    <div class="timestamp">
-                    April 2021 - Present
-                    </div>
-                    <div class="item-title">IIT, Madras</div>
-                    <div class="degree">BSc Data science</div>
-                    <div class="item-detail">Among the top 10percentile in the qualifier round</div>
-                </li>
-                <li class="tl-item" ng-repeat="item in retailer_history">
-                    <div class="timestamp">
-                    Aug 2021 - Present
-                    </div>
-                    <div class="item-title">Christ University, Bangalore</div>
-                    <div class="degree">MSc Data Science</div>
-                    <div class="item-detail">Google Developers Student Club Core team member</div>
-                </li>
-          
-            </ul>
-          
-          </div>
+        <div class="item-algin-center">
+            <div class="history-tl-container">
+                <ul class="tl">
+                    <li class="tl-item" ng-repeat="item in retailer_history">
+                        <div class="timestamp">
+                        2018 Oct - 2021 Oct
+                        </div>
+                        <div class="item-title">University of Calcutta</div>
+                        <div class="degree">BSc Statistics</div>
+                        <div class="item-detail">Represented my college in State Level meet</div>
+                    </li>
+                    <li class="tl-item" ng-repeat="item in retailer_history">
+                        <div class="timestamp">
+                        April 2021 - Present
+                        </div>
+                        <div class="item-title">IIT, Madras</div>
+                        <div class="degree">BSc Data science</div>
+                        <div class="item-detail">Among the top 10percentile in the qualifier round</div>
+                    </li>
+                    <li class="tl-item" ng-repeat="item in retailer_history">
+                        <div class="timestamp">
+                        Aug 2021 - Present
+                        </div>
+                        <div class="item-title">Christ University, Bangalore</div>
+                        <div class="degree">MSc Data Science</div>
+                        <div class="item-detail">Google Developers Student Club Core team member</div>
+                    </li>
+                </ul>   
+            </div>
+        </div>
     </section>
 
     <!--?------------- certifications ----------------->
@@ -314,17 +355,19 @@
             <p>I don't own a DSLR yet so I capture with my phone</p>
             <p>Here are some of my captures</p>
         </div>
-        <div class="photo-gallery-container">
-            <div class="photo-container-1">
-                <img src="images/photo_gallery1.jpeg" alt="photo-gallery">
-                <img src="images/photo_gallery2.jpg" alt="photo-gallery">
-            </div>
-            <div class="photo-container-2">
-                <div class="photo-container-2-1">
-                    <img class="varticle-1" style="height: 388px;" src="images/photo_gallery4.jpeg" alt="photo-gallery">
+        <div class="item-algin-center">
+            <div class="photo-gallery-container">
+                <div class="photo-container-1">
+                    <img src="images/photo_gallery1.jpeg" alt="photo-gallery">
+                    <img src="images/photo_gallery2.jpg" alt="photo-gallery">
                 </div>
-                <div class="photo-container-2-2">
-                    <img class="varticle-2" style="width: 530px;" src="images/photo_gallery3.jpg" alt="photo-gallery">
+                <div class="photo-container-2">
+                    <div class="photo-container-2-1">
+                        <img class="varticle-1" style="height: 388px;" src="images/photo_gallery4.jpeg" alt="photo-gallery">
+                    </div>
+                    <div class="photo-container-2-2">
+                        <img class="varticle-2" style="width: 530px;" src="images/photo_gallery3.jpg" alt="photo-gallery">
+                    </div>
                 </div>
             </div>
         </div>

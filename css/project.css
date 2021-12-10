@@ -63,6 +63,105 @@
     padding: 2px 0px 2px 10px;
 }
 
+
+/* ######################################### take from  code-pen  ######################################### */
+/* mobile --> button size --> margin --> background fix  */
+
+.project-image-container {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    margin: auto;
+    overflow: hidden;
+
+}
+
+.project-image-container .content-overlay{
+    background: #6afff060;
+    position: absolute;
+    height: 99%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    border-radius: 15px;
+    transition: all 0.4s ease-in-out 0s;  
+}
+
+.project-image-container:hover .content-overlay{
+    opacity: 1;
+}
+
+.content-details {
+    position: absolute;
+    top: 45%;
+    left: 38%;
+    opacity: 0;
+}
+
+.content-details button{
+    background:transparent ;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid #00887A;
+    color: #00887A;
+    text-transform: uppercase ;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+    .content-details button:hover{
+        cursor: pointer;
+        /* box-shadow: 2px 2px 10px rgb(248, 248, 248); */
+        transition: all 0.2s ease-in-out 0s;  
+    }
+
+.project-image-container:hover .content-details {
+    opacity: 1;
+    transition: all 0.4s ease-in-out 0s;  
+}
+
+/* .content-details {
+    position: absolute;
+    text-align: center;
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+} */
+
+
+
+/* .content:hover .content-details{
+    top: 50%;
+    left: 50%;
+    opacity: 1;
+}
+
+.content-details h4{
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5em;
+    text-transform: uppercase;
+} */
+
+/* .fadeIn-bottom{
+    top: 80%;
+} */
+
+/* ######################################### take from  code-pen  ######################################### */
+
 .container-project:hover{
     box-shadow: 0px 0px 10px rgb(181, 191, 192);
     transition: 0.3s ease-in-out;
@@ -70,7 +169,6 @@
 
 @media (max-width: 680px){
     .project-container{
-        /* grid-gap: 10px ; */
         display: contents;
         margin: 5px;
     }
@@ -99,6 +197,21 @@
         font-size: 14px;
         margin: 0px 0px 10px 0px;
         padding-bottom: 15px;
+    }
+
+    .content-details button{
+        padding: 4px;
+        border: 1.5px solid #00887A;
+        font-size: 10px;
+        font-weight: 600;
+    }
+
+    .content-details {
+        left: 30%;
+    }
+
+    .project-image-container .content-overlay{
+        height: 97%;
     }
 }
 

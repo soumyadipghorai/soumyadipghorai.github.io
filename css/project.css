@@ -172,6 +172,10 @@
         display: contents;
         margin: 5px;
     }
+
+    .container-project{
+        margin: 15px 5px 15px 5px;
+    }
     .container-project p{
         display: none;
     }
@@ -185,7 +189,7 @@
     }
 
     .project{
-        margin: 15px 10px 10px 10px;
+        margin: 15px 5px 10px 5px;
         padding: 10px;
     }
 

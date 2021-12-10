@@ -63,11 +63,13 @@
 
     .photo-container-1 img{
         width: 125px;
+        /* width: 90%; */
     }
 
     .varticle-2{
         /* display: none; */
         max-width: 158px;
+        /* width: 10%; */
     }
 
     .varticle-1{

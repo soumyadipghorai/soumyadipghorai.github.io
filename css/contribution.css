@@ -37,6 +37,11 @@
     box-shadow: 0px 0px 10px rgb(207, 221, 223);
 }
 
+.company-div-text{
+    display: flex;
+    justify-content: center;
+}
+
 .company-div:hover{
     color: black;
     box-shadow: 0px 0px 10px rgb(181, 191, 192);

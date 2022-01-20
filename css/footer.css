@@ -33,7 +33,9 @@ footer{
     border-radius: 10px;
 }
 
-.copyright{
+.copy-right{
+    display: flex;
+    justify-content: center;
     text-align: center;
     font-family: sans-serif;
     font-size: 14px;

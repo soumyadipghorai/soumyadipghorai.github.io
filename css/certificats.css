@@ -59,6 +59,11 @@
     transition: 0.4s ease-in;
 }
 
+.certificate-text{
+    display: flex;
+    justify-content: center;
+}
+
 @media (max-width: 680px){
     .certifications-text h3{
         font-size: 24px;

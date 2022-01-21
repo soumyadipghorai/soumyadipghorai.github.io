@@ -34,6 +34,19 @@
     padding: 10px;
 }
 
+.tools-software{
+    display: flex;
+    justify-content: space-around;
+}
+
+.tools-software p{
+    width: fit-content;
+    border-radius: 10px;
+    padding: 2px;
+    border: 1px solid turquoise;
+    font-size: 0.7vw;
+}
+
 .about-section-skills{
     margin: 10px;
     padding: 10px;
@@ -160,4 +173,7 @@
         font-size: 14px;
     }
 
+    .tools-software p{
+        font-size: 2.5vw;
+    }
 }

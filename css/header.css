@@ -78,7 +78,7 @@
 }
 
 .resume button:hover{
-    box-shadow: 0px 0px 15px rgb(207, 221, 223);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     cursor: pointer;
 }
 
@@ -107,7 +107,7 @@
 }
 
 .lead-generate .hire-me button:hover{
-    box-shadow: 0px 0px 15px rgb(207, 221, 223);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     cursor: pointer;
 }
 

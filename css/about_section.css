@@ -87,8 +87,8 @@
   
 #python {width: 90%; background-color: #00887A;}
 #sql {width: 80%; background-color: #00887A;}
-#html {width: 65%; background-color: #00887A;}
-#ml {width: 60%; background-color: #00887A;}
+#html {width: 75%; background-color: #00887A;}
+#ml {width: 70%; background-color: #00887A;}
 
 .skills-flex1{
     display: flex;
@@ -132,7 +132,7 @@
     }
 
     .about-section-skills{
-        margin: 5px 5px 5px 0px;
+        margin: 25px 5px 5px 0px;
         padding: 5px 5px 5px 0px;
     }
 

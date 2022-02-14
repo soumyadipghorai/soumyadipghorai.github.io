@@ -76,7 +76,7 @@ ul.tl li .timestamp{
 
 @media (max-width: 680px){
     .education{
-        margin: 10px;
+        margin: 15px 10px 10px 10px;
         padding: 10px;
     }
 

@@ -1,3 +1,3 @@
 ## portfolio
 
-This is the old portfolio. It was built in HTML, CSS and a bit of javascript. Later in the new version I have added bootstrap for better responsiveness.
+This is the new portfolio. It is built in HTML, CSS, bootstrap and a bit of javascript. 

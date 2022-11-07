@@ -13,7 +13,7 @@
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     transition: 0.2s linear;
     cursor: pointer;
-    transform: translateY(-10px);
+    /* transform: translateY(-10px); */
     border-radius: var(--borderRadius);
 }
 
@@ -64,16 +64,17 @@
 .project-link{
     padding: 1% 2% 0.4% 2%;
     border-radius: var(--borderRadius);
+    border: 1px solid var(--secondaryColor);
     margin-left: 5px;
     font-size: 11px;
-    background-image: linear-gradient(60deg, var(--secondaryColor), rgb(140, 251, 242));
-    color: white;
+    /* background-image: linear-gradient(60deg, var(--secondaryColor), rgb(140, 251, 242)); */
+    /* color: white; */
 }
 
-    /* .project-link:hover{
-        box-shadow: var(--boxShadowStyle);
+    .project-link:hover{
+        /* box-shadow: var(--boxShadowStyle); */
         transition: 0.3s linear;
-    } */
+    }
 
 
 .project-tag-links .github-link {

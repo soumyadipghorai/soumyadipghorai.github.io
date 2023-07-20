@@ -31,7 +31,7 @@ TxtType.prototype.tick = function() {
     this.isDeleting = true;
     } else if (this.isDeleting && this.txt === '') {
     this.isDeleting = false;
-    this.loopNum++;
+    this.loopNum++;qz
     delta = 500;
     }
 

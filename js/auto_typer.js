@@ -31,7 +31,7 @@ TxtType.prototype.tick = function() {
     this.isDeleting = true;
     } else if (this.isDeleting && this.txt === '') {
     this.isDeleting = false;
-    this.loopNum++;qz
+    this.loopNum++;
     delta = 500;
     }
 
@@ -52,6 +52,6 @@ window.onload = function() {
     // INJECT CSS
     var css = document.createElement("style");
     css.type = "text/css";
-    css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+    css.innerHTML = ".typewrite > .wrap "; //{ border-left: 0.1px solid #fff}
     document.body.appendChild(css);
 };

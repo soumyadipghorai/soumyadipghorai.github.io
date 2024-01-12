@@ -1,156 +1,172 @@
-.experience-biscuits{
-    padding: 1.5% ;
+.experience .current-experience{
+    background: white;
+    border: 1px solid var(--secondaryColor2);
+    box-shadow: -5px 5px black;
     border-radius: var(--borderRadius);
-    box-shadow: rgba(190, 191, 192, 0.15) 0px 5px 15px 0px;    
-    border: 0.5px solid rgba(0,0,0,.125);
-    margin-bottom: 2%;
 }
 
-    .experience-biscuits:hover{
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-        transition: 0.2s linear;
-        cursor: pointer;
-        transform: translateY(-5px);
-    }
-
-.company-info{
-    display: flex;
+.experience .current-experience .company-name{
+    font-size: 1.7rem;
+    font-weight: 700;
 }
 
-.company-text{
-    padding: 1% 1% 0% 2%;
-}
-    .company-text .work-done .tools-and-tech span{
-        padding: 2px 5px 5px 5px;
-        border-radius: var(--borderRadius);
-        margin-left: 5px;
-        background-image: linear-gradient(60deg, var(--secondaryColor), rgb(140, 251, 242));
-        color: white;
-    }
-
-.position .company-name {
-    font-weight: 600;
-    color: var(--secondaryColor);
-}
-
-.position .location , .role{
-    font-weight: 400;
-    color: rgb(80, 80, 80);
-}
-
-.work-done p{
-    text-align: justify;
-    padding: 0;
-}
-
-    .work-done a{
-        text-decoration: none;
-    }
-
-.company-logo{
-    width: 200px;
-}
-
-.company-logo img{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 100px;
-}
-
-.about-company p{
-    margin: 2% 0% 2% 0%;
-    padding: 0;
-    text-align: justify;
-}
-
-.company-certificate span{
-    background-color: var(--primaryColor);
-    border: 0.5px solid var(--primaryColor);;
-    border-radius: var(--borderRadius);
+.experience .education-details{
+    background: linear-gradient(120deg, var(--secondaryColor3), rgb(52, 51, 51));
     color: white;
-    padding: 2px 8px 4px 8px;
-    font-size: 12px;
+    border-radius: var(--borderRadius);
+    box-shadow: -5px 5px black;
+    border: 1px solid var(--secondaryColor3);
 }
 
-.mobile-experience .about-company p{
-    margin: 6% 0% 5% 0%;
-    padding: 0;
-    text-align: justify;
+.experience .experience-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    row-gap: 5%;
+    column-gap: 2%;
+    grid-auto-rows: minmax(50px, auto);
+    grid-auto-columns: minmax(50px, auto);
 }
 
-.tools-and-tech span, b{
-    font-size: 14px;
+.experience .experience-container .current-experience{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
 }
 
-.role, .company-name, .location{
-    font-size: 1.3vw;
+.experience .experience-container .experience-info{
+    grid-column-start: 4;
+    grid-column-end: 5;
+    height: 100%;
 }
 
-.company-text p, li{
-    font-size: 1vw;
+.experience .experience-container .info-1{
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+.experience .experience-container .info-2{
+    grid-row-start: 2;
+    grid-row-end: 3;
 }
 
-@media screen and (max-width : 948px){
+.experience .education-details .degree{
+    font-size: 1.6rem;
+    font-weight: 500;
+}
 
-    .company-logo img{
-        max-height: 80px;
+.experience .experience-info{
+    border: 1px solid var(--secondaryColor2);
+    border-radius: var(--borderRadius);
+    background: white;    
+    box-shadow: -5px 5px black;
+    height: 47%;
+}
+
+.experience .experience-info .number{
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+
+/* <slider animation>  */
+@keyframes slide{
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.experience .logos{
+    overflow: hidden;
+    background-color: white;
+    white-space: nowrap; /* bring all logos in the same line */
+    box-shadow: -5px 5px black;
+    border: 1px solid var(--secondaryColor2);
+    position: relative;
+    width: 75%;
+    border-radius: var(--borderRadius);
+}
+
+.experience .logos:before, 
+.experience .logos:after {
+    position: absolute;
+    top: 0;
+    width: 10%;
+    height: 100%;
+    content: "";
+    z-index: 2;
+}
+
+.experience .logos:before{
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+}
+
+.experience .logos:after{
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+}
+
+.experience .logos-slide{
+    display: inline-block;
+    animation: 25s slide infinite linear;
+}
+
+.experience .logos:hover .logos-slide{
+    animation-play-state: paused;
+}
+.experience .logos-slide img{
+    height: 50px;
+    margin: 0 40px;
+}
+/* </slider animation>  */
+
+@media only screen and (max-width: 768px){
+    .experience .logos{
+        width: 100%;
+    }
+    .experience .logos:before, .experience .logos:after{
+        background: transparent;
+    }
+    .experience .logos-slide img{
+        height: 30px;
+        margin: 0 20px;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .experience .experience-container{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        row-gap: 2%;
+        column-gap: 4%;
+        grid-auto-rows: minmax(50px, auto);
+        grid-auto-columns: minmax(50px, auto);
     }
 
-    .company-text span{
-        font-size: 2vw;
+    .experience .experience-container .current-experience{
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 3;
     }
-        .company-text p, li{
-            font-size: 1.7vw;
-        }
-
-    .work-done li{
-        margin: 0;
-        padding: 0;
-        list-style-type: circle;
-    }
-        
-}
-
-@media screen and (min-width : 480px) {
-    .mobile-experience{
-        display: none;
-    }
-}
-
-@media screen and (max-width : 480px){
-    .mobile-experience{
-        margin-top: 10%;
-    }
-
-    /* .mobile-experience .role, .mobile-experience .company-name, .mobile-experience .location{
-        font-size: 3.6vw;
-    } */
     
-    .company-logo img{
-        max-height: 40px;
+    .experience .experience-container .experience-info{
+        grid-row-start: 3;
+        grid-row-end: 4;
+        height: 70%;
     }
-
-    .company-text span{
-        font-size: 3.8vw;
+    
+    .experience .experience-container .info-1{
+        grid-column-start: 1;
+        grid-column-end: 2;
     }
-        .company-text p{
-            font-size: 3.1vw;
-        }
-
-    .work-done li{
-        margin: 0;
-        padding: 0;
-        font-size: 3.1vw;
-        text-align: justify;
-        margin-bottom: 2.5%;
-    }
-
-    .experience{
-        display: none;
-    }
-
-    .tools-and-tech span, b{
-        font-size: 2.6vw;
+    .experience .experience-container .info-2{
+        grid-column-start: 2;
+        grid-column-end: 3;
     }
 }

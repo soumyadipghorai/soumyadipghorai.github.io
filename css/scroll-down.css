@@ -1,0 +1,34 @@
+.scroll-down .scroll-down-text{
+    text-align: center;
+}
+
+.scroll-down .scroller-container {
+    position: relative;
+}
+
+.scroll-down .circle{
+    position: absolute;
+    top: 18%;
+    left: 10%;
+}
+
+.scroll-down .scroll-arrow{
+    position: absolute;
+    left: 10%;
+}
+
+.scroll-down{
+    margin-bottom: 10%;
+}
+
+@media only screen and (max-width: 768px){
+    .scroll-down .scroller-container{
+        margin-bottom: 20%;
+    } 
+}
+
+@media only screen and (max-width: 500px){
+    .scroll-down .scroller-container{
+        margin-bottom: 30%;
+    } 
+}

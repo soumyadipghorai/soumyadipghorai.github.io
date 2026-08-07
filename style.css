@@ -1,0 +1,379 @@
+/* =========================================================
+   Soumyadip Ghorai — Portfolio
+   Custom stylesheet (Tailwind CDN handles utility classes;
+   this file holds bespoke visuals, animations & tokens)
+   ========================================================= */
+
+:root {
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* ---------- Responsive section padding ----------
+   Scales smoothly with viewport width instead of jumping at
+   fixed breakpoints, so laptop widths (~1024-1440px) get
+   proportionate breathing room instead of feeling cramped
+   between the md and lg Tailwind steps. */
+.section-px {
+  padding-left: clamp(1.25rem, 4vw, 4.5rem);
+  padding-right: clamp(1.25rem, 4vw, 4.5rem);
+}
+
+/* ---------- Editorial texture backgrounds ----------
+   IMPORTANT: this must NOT use `color` + currentColor for the dot tint —
+   `color` is inherited, so any child text without its own explicit
+   Tailwind text-color class (headings, counters, secondary buttons)
+   would silently inherit this near-transparent tint and become
+   unreadable. Use a dedicated CSS variable instead so the dot color
+   never leaks into text. */
+.dot-grid {
+  --dot-color: rgba(0,0,0,0.06);
+  background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.dark .dot-grid { --dot-color: rgba(255,255,255,0.08); }
+
+/* Thinner stroke on small screens: at mobile font sizes a 1.5px stroke is
+   relatively thick against the letterforms, so adjacent counters (like the
+   "i"/"e" in "Scientist") fill in and become illegible. */
+.text-outline {
+  -webkit-text-stroke: 1px currentColor;
+  color: transparent;
+}
+@media (min-width: 640px) {
+  .text-outline { -webkit-text-stroke: 1.5px currentColor; }
+}
+
+/* ---------- Preloader ---------- */
+#preloader {
+  transition: opacity 0.5s var(--ease), visibility 0.5s var(--ease);
+}
+#preloader.preloader-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.preloader-ring {
+  animation: preloader-spin 1.4s linear infinite;
+  transform-origin: 50% 50%;
+}
+.preloader-arc {
+  stroke-dasharray: 60 220;
+  stroke-dashoffset: 0;
+}
+@keyframes preloader-spin {
+  to { transform: rotate(360deg); }
+}
+.preloader-mark {
+  animation: preloader-pulse 1.8s var(--ease) infinite;
+}
+@keyframes preloader-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+.preloader-dots span {
+  animation: preloader-blink 1.4s infinite;
+  opacity: 0.2;
+}
+.preloader-dots span:nth-child(2) { animation-delay: 0.2s; }
+.preloader-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes preloader-blink {
+  0%, 80%, 100% { opacity: 0.2; }
+  40% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .preloader-ring, .preloader-mark, .preloader-dots span { animation: none; }
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+.reveal-stagger.is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 90ms; }
+.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 180ms; }
+.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 270ms; }
+.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 360ms; }
+.reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 450ms; }
+
+/* ---------- Nav ---------- */
+#site-header {
+  transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 0;
+  background: currentColor;
+  transition: width 0.3s var(--ease);
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+.nav-link.active {
+  color: var(--tw-nav-active, inherit);
+}
+
+/* mobile menu */
+#mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease);
+}
+#mobile-menu.open {
+  max-height: 640px;
+}
+
+/* ---------- Theme toggle ---------- */
+#theme-toggle svg {
+  transition: transform 0.5s var(--ease), opacity 0.3s var(--ease);
+}
+
+/* ---------- Avatar placeholder ---------- */
+.avatar-frame {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+.avatar-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(from 180deg, #a3e635, #16a34a, #0a0a0a, #a3e635);
+  z-index: -2;
+}
+.avatar-frame::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: inherit;
+  background: var(--avatar-bg, #0a0a0a);
+  z-index: -1;
+}
+.avatar-initials {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+/* orbiting tech chips around hero avatar */
+.orbit-chip {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  animation: floaty 6s ease-in-out infinite;
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ---------- Skill radial bars ---------- */
+.radial-progress circle {
+  transition: stroke-dashoffset 1.2s var(--ease);
+}
+
+/* ---------- Footer social icon buttons ---------- */
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(10, 10, 10, 0.15);
+  color: currentColor;
+  transition: background-color 0.25s var(--ease), color 0.25s var(--ease), transform 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.social-icon svg { width: 1.15rem; height: 1.15rem; }
+.social-icon:hover,
+.social-icon:focus-visible {
+  background-color: #65a30d;
+  border-color: #65a30d;
+  color: #fff;
+  transform: translateY(-2px);
+}
+.dark .social-icon { border-color: rgba(255, 255, 255, 0.15); }
+
+/* ---------- Branding photo placeholders (About / Highlights) ---------- */
+.brand-photo-frame { position: relative; }
+.brand-photo-frame img { transition: transform 0.6s var(--ease); }
+.brand-photo-frame:hover img { transform: scale(1.04); }
+
+/* ---------- Gallery: fun animated photo grid ---------- */
+.gallery-tile {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  /* No resting-state rotation here — the gallery rows are tightly aligned
+     (fixed row height, big + small tiles flush edge-to-edge), and any
+     baseline tilt would break that alignment. Hover keeps a small,
+     playful pop instead. */
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.gallery-tile:hover,
+.gallery-tile:focus-visible {
+  transform: scale(1.025);
+  z-index: 5;
+  box-shadow: 0 20px 40px -12px rgba(0,0,0,0.35);
+}
+/* Parallax images: oversized (130% height) and absolutely positioned so
+   script.js can slide them vertically within their cropped frame on scroll
+   without ever exposing empty edges. Transform is owned by JS (scroll-driven
+   translateY); only filter/opacity are left to CSS transitions. */
+.gallery-tile .parallax-img {
+  position: absolute;
+  left: 0;
+  top: -15%;
+  width: 100%;
+  height: 130%;
+  object-fit: cover;
+  filter: grayscale(0.5) saturate(1.05);
+  transition: filter 0.5s var(--ease);
+  will-change: transform;
+}
+.gallery-tile:hover .parallax-img,
+.gallery-tile:focus-visible .parallax-img {
+  filter: grayscale(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .gallery-tile .parallax-img { transform: none !important; top: 0; height: 100%; }
+}
+.gallery-tile .tile-gradient {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.7s var(--ease);
+}
+.gallery-tile:hover .tile-gradient {
+  transform: scale(1.08);
+}
+.gallery-tile .gallery-caption {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+}
+.gallery-tile:hover .gallery-caption,
+.gallery-tile:focus-visible .gallery-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-tile { transform: none !important; }
+}
+
+/* Lightbox */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease);
+  padding: 5vh 5vw;
+}
+#lightbox.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+#lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  transform: scale(0.94);
+  transition: transform 0.3s var(--ease);
+}
+#lightbox.open img {
+  transform: scale(1);
+}
+#lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  color: #fff;
+}
+
+/* ---------- Marquee for tech arsenal strip ---------- */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+.marquee-track:hover { animation-play-state: paused; }
+/* Each duplicated group must never shrink/wrap — on narrow (phone) viewports
+   flex items default to shrink:1, which squashes and wraps the group and
+   breaks the seamless -50% loop math, making the strip look frozen. */
+.marquee-track > div {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ---------- Utility ---------- */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+::selection {
+  background: #a3e635;
+  color: #0a0a0a;
+}
+
+/* Focus visibility for accessibility */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid #a3e635;
+  outline-offset: 2px;
+}

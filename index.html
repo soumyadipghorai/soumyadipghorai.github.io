@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Soumyadip Ghorai | Data Scientist</title>
+<meta name="description" content="Soumyadip Ghorai — Data Scientist specializing in LLMs, RAG, ML pipelines and data-driven products. 3+ years across telecom, pharma, manufacturing, consulting and sports."/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0a'/%3E%3Ctext x='50' y='68' font-family='Arial, sans-serif' font-size='52' font-weight='900' fill='%23a3e635' text-anchor='middle'%3ESG%3C/text%3E%3C/svg%3E"/>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          primary: "#65a30d",          /* unified lime/olive-green accent */
+          "primary-light": "#a3e635",
+          ink: "#0a0a0a",              /* near-black, used for text & dark bg */
+          paper: "#f7f7f2",            /* warm off-white, light bg */
+          "paper-dim": "#efefe8",
+          charcoal: "#15171c",         /* dark-mode surface */
+          "charcoal-2": "#1d2027",     /* dark-mode elevated surface */
+          muted: "#6b6f76",
+        },
+        fontFamily: {
+          display: ["'Big Shoulders Display'", "sans-serif"],
+          sans: ["Inter", "sans-serif"],
+          mono: ["'Space Mono'", "monospace"],
+        },
+      },
+    },
+  };
+</script>
+<style type="text/tailwindcss">
+  @layer base {
+    body {
+      @apply bg-paper text-ink font-sans antialiased dark:bg-ink dark:text-paper;
+    }
+    h1, h2, h3, h4 {
+      @apply font-display uppercase tracking-tight leading-[0.95];
+    }
+  }
+</style>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body class="overflow-x-hidden">
+
+<!-- =========================================================
+     PRELOADER — shown until the critical hero image + fonts are ready,
+     removed by script.js (with a hard timeout fallback so it can never
+     get stuck open).
+     ========================================================= -->
+<div id="preloader" class="fixed inset-0 z-[999] flex flex-col items-center justify-center gap-6 bg-paper dark:bg-ink" aria-hidden="true">
+  <div class="preloader-mark relative flex items-center justify-center size-20 md:size-24">
+    <svg class="preloader-ring absolute inset-0" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="44" stroke="currentColor" stroke-width="3" class="text-ink/10 dark:text-white/10"/>
+      <circle cx="50" cy="50" r="44" stroke="currentColor" stroke-width="3" stroke-linecap="round" class="preloader-arc text-primary"/>
+    </svg>
+    <span class="font-display font-black text-2xl md:text-3xl text-ink dark:text-paper">SG</span>
+  </div>
+  <div class="flex flex-col items-center gap-2">
+    <span class="font-display font-black uppercase tracking-tight text-lg md:text-xl">
+      Data<span class="text-primary">.</span>Scientist<span class="preloader-dots text-primary"><span>.</span><span>.</span><span>.</span></span>
+    </span>
+    <span class="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40 dark:text-white/30">Compiling Portfolio</span>
+  </div>
+</div>
+
+<!-- =========================================================
+     HEADER / NAV
+     ========================================================= -->
+<header id="site-header" class="fixed top-0 z-50 w-full border-b border-ink/10 dark:border-white/10 bg-paper/85 dark:bg-ink/85 backdrop-blur-xl">
+  <div class="mx-auto flex max-w-[1400px] items-center justify-between section-px py-4 md:py-5">
+    <a href="#home" class="flex items-center gap-3 group min-w-0">
+      <div class="size-9 rounded-lg bg-ink dark:bg-primary-light text-primary-light dark:text-ink flex items-center justify-center font-display font-black text-sm shrink-0">SG</div>
+      <span class="block font-display font-bold tracking-wide sm:tracking-widest uppercase truncate max-w-[34vw] sm:max-w-none text-xs sm:text-base">Soumyadip Ghorai</span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-9">
+      <a class="nav-link text-xs font-bold uppercase tracking-widest text-ink/70 dark:text-white/70 hover:text-primary transition-colors" href="#about">About</a>
+      <a class="nav-link text-xs font-bold uppercase tracking-widest text-ink/70 dark:text-white/70 hover:text-primary transition-colors" href="#experience">Experience</a>
+      <a class="nav-link text-xs font-bold uppercase tracking-widest text-ink/70 dark:text-white/70 hover:text-primary transition-colors" href="#skills">Skills</a>
+      <a class="nav-link text-xs font-bold uppercase tracking-widest text-ink/70 dark:text-white/70 hover:text-primary transition-colors" href="#services">Services</a>
+      <a class="nav-link text-xs font-bold uppercase tracking-widest text-ink/70 dark:text-white/70 hover:text-primary transition-colors" href="#contact">Contact</a>
+    </nav>
+
+    <div class="flex items-center gap-2 md:gap-3 shrink-0">
+      <button id="theme-toggle" type="button" aria-label="Toggle dark mode" class="p-2.5 rounded-full border border-ink/15 dark:border-white/15 hover:border-primary transition-colors">
+        <svg id="icon-sun" class="hidden size-5 text-primary-light" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg id="icon-moon" class="size-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <a href="docs/Soumyadip%20Ghorai%20Data%20Scientist%203%2Byoe%20GE.pdf" download class="hidden md:inline-flex items-center gap-2 bg-ink text-paper dark:bg-primary-light dark:text-ink px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors">
+        Resume
+        <span class="material-symbols-outlined text-[16px]">download</span>
+      </a>
+      <button id="hamburger-btn" type="button" aria-label="Open menu" aria-expanded="false" class="lg:hidden p-2.5 rounded-full border border-ink/15 dark:border-white/15">
+        <svg id="icon-hamburger" class="size-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg id="icon-close" class="hidden size-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="lg:hidden border-t border-ink/10 dark:border-white/10 bg-paper dark:bg-ink">
+    <nav class="flex flex-col px-6 py-6 gap-5">
+      <a class="nav-link text-sm font-bold uppercase tracking-widest" href="#about">About</a>
+      <a class="nav-link text-sm font-bold uppercase tracking-widest" href="#experience">Experience</a>
+      <a class="nav-link text-sm font-bold uppercase tracking-widest" href="#skills">Skills</a>
+      <a class="nav-link text-sm font-bold uppercase tracking-widest" href="#services">Services</a>
+      <a class="nav-link text-sm font-bold uppercase tracking-widest" href="#contact">Contact</a>
+      <a href="docs/Soumyadip%20Ghorai%20Data%20Scientist%203%2Byoe%20GE.pdf" download class="inline-flex items-center justify-center gap-2 bg-ink text-paper dark:bg-primary-light dark:text-ink px-5 py-3 rounded-full text-xs font-bold uppercase tracking-widest">
+        Download Resume
+        <span class="material-symbols-outlined text-[16px]">download</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main class="flex-1 pt-[72px] md:pt-[84px]">
+
+  <!-- =========================================================
+       HERO
+       ========================================================= -->
+  <section id="home" class="relative min-h-[92vh] flex items-center dot-grid section-px py-16">
+    <div class="mx-auto max-w-[1400px] w-full grid grid-cols-1 lg:grid-cols-12 items-center gap-14">
+
+      <!-- Text column -->
+      <div class="order-2 lg:order-1 lg:col-span-7 reveal">
+        <span class="inline-block text-primary font-bold uppercase tracking-[0.3em] mb-5 text-xs md:text-sm">Hi there, I'm Soumyadip</span>
+        <h1 class="flex flex-wrap items-baseline gap-x-4 text-[10vw] sm:text-[8vw] lg:text-[5rem] xl:text-[6.2rem] font-black uppercase tracking-tight sm:tracking-tighter mb-6">
+          <span>Data</span>
+          <span class="text-outline text-primary">Scientist</span>
+        </h1>
+        <p class="max-w-xl text-base md:text-lg text-ink/70 dark:text-white/60 leading-relaxed border-l-2 border-primary/50 pl-6 mb-10">
+          MSc + BS Data Science graduate with 3+ years building end-to-end AI/ML solutions — LLMs, RAG, ML pipelines &amp; data platforms — across telecom, pharma, manufacturing, consulting and sports.
+        </p>
+        <div class="flex flex-wrap gap-4 md:gap-6">
+          <a href="#projects" class="group inline-flex items-center gap-3 bg-ink text-paper dark:bg-primary-light dark:text-ink px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-primary hover:text-white transition-colors rounded-full">
+            View My Work
+            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform text-[18px]">arrow_forward</span>
+          </a>
+          <a href="docs/Soumyadip%20Ghorai%20Data%20Scientist%203%2Byoe%20GE.pdf" download class="group inline-flex items-center gap-3 border-2 border-ink dark:border-white/30 px-8 py-4 text-sm font-bold uppercase tracking-widest hover:border-primary hover:text-primary transition-colors rounded-full">
+            Download Resume
+            <span class="material-symbols-outlined text-[18px]">download</span>
+          </a>
+        </div>
+
+        <!-- Quick social links -->
+        <!-- <div class="flex flex-wrap items-center gap-3 mt-8">
+          <a href="https://www.linkedin.com/in/soumyadipghorai/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn" class="social-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/></svg>
+          </a>
+          <a href="https://github.com/soumyadipghorai" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub" class="social-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.754-1.333-1.754-1.089-.745.083-.729.083-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+          <a href="https://leetcode.com/soumyadipghorai" target="_blank" rel="noopener" aria-label="LeetCode" title="LeetCode" class="social-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.098 8.017-.152l2.396-2.392c.54-.545.54-1.43-.005-1.976-.545-.545-1.43-.545-1.976 0l-2.415 2.41a3.264 3.264 0 0 1-4.523.088l-4.276-4.193c-.218-.211-.4-.454-.537-.719a2.906 2.906 0 0 1-.336-1.539c.005-.336.058-.667.157-.987a2.9 2.9 0 0 1 .673-1.089l3.854-4.126 4.53-4.848a1.374 1.374 0 0 0-.04-1.941A1.375 1.375 0 0 0 13.483 0zm2.626 8.978a1.374 1.374 0 1 0 0 2.748h6.517a1.374 1.374 0 1 0 0-2.748h-6.517z"/></svg>
+          </a>
+          <a href="mailto:ghorai.soumyadip33@gmail.com" aria-label="Email" title="Email" class="social-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6.75A2.25 2.25 0 0 1 5.25 4.5h13.5A2.25 2.25 0 0 1 21 6.75v10.5A2.25 2.25 0 0 1 18.75 19.5H5.25A2.25 2.25 0 0 1 3 17.25V6.75Z" stroke-linecap="round" stroke-linejoin="round"/><path d="m3.5 6.5 8.5 6 8.5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div> -->
+
+        <!-- Stat callouts -->
+        <div class="reveal-stagger grid grid-cols-2 md:grid-cols-4 gap-4 mt-14 max-w-2xl">
+          <div class="bg-paper-dim dark:bg-charcoal-2 p-4 md:p-5 rounded-xl border-l-4 border-primary">
+            <span class="material-symbols-outlined text-primary text-xl mb-2 block">work_history</span>
+            <span class="text-2xl md:text-3xl font-display font-black block">3+</span>
+            <span class="font-mono text-[9px] uppercase text-ink/60 dark:text-white/50">Years Exp.</span>
+          </div>
+          <div class="bg-paper-dim dark:bg-charcoal-2 p-4 md:p-5 rounded-xl border-l-4 border-primary">
+            <span class="material-symbols-outlined text-primary text-xl mb-2 block">emoji_events</span>
+            <span class="text-2xl md:text-3xl font-display font-black block">3X</span>
+            <span class="font-mono text-[9px] uppercase text-ink/60 dark:text-white/50">Kaggle Expert</span>
+          </div>
+          <div class="bg-paper-dim dark:bg-charcoal-2 p-4 md:p-5 rounded-xl border-l-4 border-primary">
+            <span class="material-symbols-outlined text-primary text-xl mb-2 block">groups</span>
+            <span class="counter text-2xl md:text-3xl font-display font-black block" data-target="200" data-suffix="+">0+</span>
+            <span class="font-mono text-[9px] uppercase text-ink/60 dark:text-white/50">Students Mentored</span>
+          </div>
+          <div class="bg-paper-dim dark:bg-charcoal-2 p-4 md:p-5 rounded-xl border-l-4 border-primary">
+            <span class="material-symbols-outlined text-primary text-xl mb-2 block">code</span>
+            <span class="counter text-2xl md:text-3xl font-display font-black block" data-target="1000" data-suffix="+">0+</span>
+            <span class="font-mono text-[9px] uppercase text-ink/60 dark:text-white/50">LeetCode Solved</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Avatar column -->
+      <div class="order-1 lg:order-2 lg:col-span-5 relative flex items-center justify-center">
+        <div class="relative w-[68vw] sm:w-[58vw] md:w-[46vw] lg:w-[32vw] max-w-[460px]">
+          <div class="avatar-frame w-full">
+            <img src="assets/gallery/hero-img.JPG" alt="Soumyadip Ghorai" class="h-full w-full object-cover object-[10%_25%]" fetchpriority="high" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+            <span class="avatar-initials text-primary-light text-[9rem] leading-none" style="display:none;">SG</span>
+          </div>
+
+          <!-- orbiting tech chips (tighter offsets on phones so they can't push the
+               page into horizontal scroll; full spread returns at md+) -->
+          <div class="orbit-chip -top-2 -left-2 md:-top-4 md:-left-6 bg-paper dark:bg-charcoal-2 border border-ink/10 dark:border-white/10 shadow-lg rounded-xl px-2.5 py-1.5 md:px-3 md:py-2" style="animation-delay:0s;">
+            <span class="material-symbols-outlined text-primary text-base md:text-lg">terminal</span>
+            <span class="font-bold uppercase text-[9px] md:text-[10px] tracking-widest">Python</span>
+          </div>
+          <div class="orbit-chip top-1/4 -right-2 md:-right-8 bg-paper dark:bg-charcoal-2 border border-ink/10 dark:border-white/10 shadow-lg rounded-xl px-2.5 py-1.5 md:px-3 md:py-2" style="animation-delay:1.2s;">
+            <span class="material-symbols-outlined text-primary text-base md:text-lg">hub</span>
+            <span class="font-bold uppercase text-[9px] md:text-[10px] tracking-widest">PyTorch</span>
+          </div>
+          <div class="orbit-chip bottom-1/4 -left-2 md:-left-10 bg-paper dark:bg-charcoal-2 border border-ink/10 dark:border-white/10 shadow-lg rounded-xl px-2.5 py-1.5 md:px-3 md:py-2" style="animation-delay:2.4s;">
+            <span class="material-symbols-outlined text-primary text-base md:text-lg">database</span>
+            <span class="font-bold uppercase text-[9px] md:text-[10px] tracking-widest">SQL</span>
+          </div>
+          <div class="orbit-chip -bottom-2 right-0 md:-bottom-4 md:right-2 bg-paper dark:bg-charcoal-2 border border-ink/10 dark:border-white/10 shadow-lg rounded-xl px-2.5 py-1.5 md:px-3 md:py-2" style="animation-delay:3.6s;">
+            <span class="material-symbols-outlined text-primary text-base md:text-lg">monitoring</span>
+            <span class="font-bold uppercase text-[9px] md:text-[10px] tracking-widest">Streamlit</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core arsenal marquee strip -->
+  <section class="bg-paper-dim dark:bg-charcoal-2 border-y border-ink/10 dark:border-white/10 py-8 overflow-hidden">
+    <div class="marquee-track">
+      <!-- duplicated content x2 for seamless loop -->
+      <div class="flex items-center gap-16 pr-16">
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">terminal</span><span class="font-bold uppercase text-xs tracking-widest">Python</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">storage</span><span class="font-bold uppercase text-xs tracking-widest">SQL</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">hub</span><span class="font-bold uppercase text-xs tracking-widest">PyTorch</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">psychology</span><span class="font-bold uppercase text-xs tracking-widest">TensorFlow</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">smart_toy</span><span class="font-bold uppercase text-xs tracking-widest">LangChain</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">bolt</span><span class="font-bold uppercase text-xs tracking-widest">FastAPI</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">monitoring</span><span class="font-bold uppercase text-xs tracking-widest">Streamlit</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">box</span><span class="font-bold uppercase text-xs tracking-widest">Docker</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">cloud_done</span><span class="font-bold uppercase text-xs tracking-widest">Azure ML</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">query_stats</span><span class="font-bold uppercase text-xs tracking-widest">Apache Druid</span></div>
+      </div>
+      <div class="flex items-center gap-16 pr-16" aria-hidden="true">
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">terminal</span><span class="font-bold uppercase text-xs tracking-widest">Python</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">storage</span><span class="font-bold uppercase text-xs tracking-widest">SQL</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">hub</span><span class="font-bold uppercase text-xs tracking-widest">PyTorch</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">psychology</span><span class="font-bold uppercase text-xs tracking-widest">TensorFlow</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">smart_toy</span><span class="font-bold uppercase text-xs tracking-widest">LangChain</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">bolt</span><span class="font-bold uppercase text-xs tracking-widest">FastAPI</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">monitoring</span><span class="font-bold uppercase text-xs tracking-widest">Streamlit</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">box</span><span class="font-bold uppercase text-xs tracking-widest">Docker</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">cloud_done</span><span class="font-bold uppercase text-xs tracking-widest">Azure ML</span></div>
+        <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">query_stats</span><span class="font-bold uppercase text-xs tracking-widest">Apache Druid</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       ABOUT
+       ========================================================= -->
+  <section id="about" class="relative py-28 md:py-36 section-px">
+    <div class="mx-auto max-w-[1300px]">
+      <div class="reveal flex flex-col items-center text-center mb-20">
+        <span class="font-mono text-xs tracking-[0.3em] uppercase mb-4 text-ink/50 dark:text-white/40">Portfolio Narrative</span>
+        <h2 class="text-[13vw] md:text-8xl font-black">About Me</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+        <div class="reveal md:col-span-7 space-y-6">
+          <p class="text-xl md:text-2xl font-medium leading-snug">
+            I build end-to-end AI/ML systems that turn messy, real-world data into products people actually rely on — from LLM copilots to real-time analytics pipelines.
+          </p>
+          <p class="text-base md:text-lg text-ink/70 dark:text-white/60 leading-relaxed">
+            Over 3+ years I've shipped Retrieval-Augmented Generation tools, agentic LLM systems, forecasting engines and streaming data pipelines across telecom, pharma, manufacturing, consulting and sports domains — always tying the technical work back to measurable business impact.
+          </p>
+          <p class="text-base md:text-lg text-ink/70 dark:text-white/60 leading-relaxed">
+            I'm a 3X Kaggle Expert and mentor to 200+ students, and I care deeply about cross-functional collaboration, stakeholder communication, and building AI solutions that actually scale in production — not just in notebooks.
+          </p>
+
+          <div class="pt-6">
+            <h3 class="text-2xl font-display font-black uppercase mb-6">Education</h3>
+            <div class="space-y-5">
+              <div class="flex gap-5 border-l-4 border-primary pl-5">
+                <div>
+                  <p class="font-bold text-lg leading-tight">BS in Data Science and Applications</p>
+                  <p class="text-sm text-ink/60 dark:text-white/50">Indian Institute of Technology, Madras &middot; 2021–2025</p>
+                </div>
+              </div>
+              <div class="flex gap-5 border-l-4 border-primary/60 pl-5">
+                <div>
+                  <p class="font-bold text-lg leading-tight">MSc Data Science</p>
+                  <p class="text-sm text-ink/60 dark:text-white/50">Christ University, Bangalore &middot; 2021–2023</p>
+                </div>
+              </div>
+              <div class="flex gap-5 border-l-4 border-primary/30 pl-5">
+                <div>
+                  <p class="font-bold text-lg leading-tight">BSc Statistics</p>
+                  <p class="text-sm text-ink/60 dark:text-white/50">University of Calcutta &middot; 2018–2021</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal md:col-span-5">
+          <!-- Personal branding photo for the About section. -->
+          <div class="brand-photo-frame mb-4 rounded-2xl overflow-hidden border border-ink/5 dark:border-white/10 aspect-[4/3] relative bg-paper-dim dark:bg-charcoal-2">
+            <img src="assets/gallery/about-me.jpg" alt="Soumyadip Ghorai" class="h-full w-full object-cover" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+            <div class="absolute inset-0 hidden flex-col items-center justify-center gap-3 text-ink/30 dark:text-white/20">
+              <span class="material-symbols-outlined text-5xl">add_a_photo</span>
+              <span class="font-mono text-[10px] uppercase tracking-widest">Add assets/gallery/about-me.jpg</span>
+            </div>
+          </div>
+          <!-- Deliberately different info from the hero's stat strip (3+ / 3X / 200+ / 975+)
+               to avoid repeating the same numbers twice on one page. -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-paper-dim dark:bg-charcoal-2 p-6 rounded-2xl border border-ink/5 dark:border-white/10">
+              <!-- <span class="material-symbols-outlined text-primary text-3xl mb-3 block">query_stats</span>
+              <span class="text-3xl font-display font-black block">40+</span>
+              <span class="font-mono text-[10px] uppercase text-ink/60 dark:text-white/50">Live KPIs Tracked</span> -->
+              <span class="material-symbols-outlined text-primary text-3xl mb-3 block">public</span>
+              <span class="text-3xl font-display font-black block">5</span>
+              <span class="font-mono text-[10px] uppercase text-ink/60 dark:text-white/50">Industries Served</span>
+            </div>
+            <div class="bg-primary p-6 rounded-2xl border border-ink/5 dark:border-white/10">
+              <span class="material-symbols-outlined text-3xl mb-3 block">work</span>
+              <span class="text-xl font-display font-black block leading-tight">GE Vernova</span>
+              <span class="font-mono text-[10px] uppercase text-white/80">Currently At</span>
+            </div>
+            <!-- <div class="bg-paper-dim dark:bg-charcoal-2 p-6 rounded-2xl border border-ink/5 dark:border-white/10">
+              <span class="material-symbols-outlined text-primary text-3xl mb-3 block">business_center</span>
+              <span class="text-3xl font-display font-black block">4</span>
+              <span class="font-mono text-[10px] uppercase text-ink/60 dark:text-white/50">Companies</span>
+            </div>
+            <div class="bg-primary text-white p-6 rounded-2xl">
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       EXPERIENCE
+       ========================================================= -->
+  <section id="experience" class="relative py-28 md:py-36 section-px bg-paper-dim dark:bg-charcoal-2 border-y border-ink/10 dark:border-white/10">
+    <div class="mx-auto max-w-[1300px]">
+      <div class="reveal flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-4 border-b-2 border-ink/80 dark:border-white/70 pb-4">
+        <h2 class="text-6xl md:text-8xl font-black">Work Experience</h2>
+        <span class="font-mono text-xs text-ink/50 dark:text-white/40 uppercase">Chronicle / 2021–Present</span>
+      </div>
+
+      <div class="space-y-24 md:space-y-32">
+
+        <!-- GE Vernova -->
+        <div class="reveal grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          <div class="md:col-span-4">
+            <div class="flex items-start gap-5">
+              <span class="text-7xl md:text-8xl font-black text-primary leading-none">01</span>
+              <div class="flex flex-col pt-2">
+                <span class="font-mono text-xs uppercase tracking-tighter text-ink/50 dark:text-white/40">Jun 2025 — Present</span>
+                <h3 class="text-3xl md:text-4xl mt-2">Data Scientist</h3>
+                <span class="font-mono text-sm uppercase font-bold text-ink/60 dark:text-white/50 mt-1">GE Vernova &middot; Bangalore</span>
+              </div>
+            </div>
+          </div>
+          <div class="md:col-span-7 md:col-start-6">
+            <ul class="space-y-6">
+              <li class="flex gap-4"><span class="material-symbols-outlined text-primary mt-1">check_circle</span><p class="text-lg leading-relaxed text-ink/80 dark:text-white/70">Built a HyDE-based advanced RAG tool, cutting plant application onboarding from 6+ weeks to under 2 weeks for new configurators.</p></li>
+              <li class="flex gap-4"><span class="material-symbols-outlined text-primary mt-1">check_circle</span><p class="text-lg leading-relaxed text-ink/80 dark:text-white/70">Developed a LangGraph-based agent with LLM + SLM architecture, enabling talk-to-data across multiple real-time data sources.</p></li>
+              <li class="flex gap-4"><span class="material-symbols-outlined text-primary mt-1">check_circle</span><p class="text-lg leading-relaxed text-ink/80 dark:text-white/70">Achieved 97% text classification accuracy using SGD + Logistic Regression and LoRA-finetuned Llama3.2:1B, reducing LLM hallucinations.</p></li>
+              <li class="flex gap-4"><span class="material-symbols-outlined text-primary mt-1">check_circle</span><p class="text-lg leading-relaxed text-ink/80 dark:text-white/70">Created an end-to-end real-time Kafka → Druid pipeline, scaling to 300+ control loops, powering dashboards tracking 40+ live KPIs.</p></li>
+            </ul>
+            <div class="mt-8 flex flex-wrap gap-2">
+              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">Python</span>
+              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">LLM / SLM</span>
+              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">RAG</span>
+              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">LangGraph</span>
+              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">Apache Druid</span>
+              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">Kafka</span>
+              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">Docker</span>
+              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">Vector DB</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPMG -->
+        <div class="reveal grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          <div class="md:col-span-4">
+            <div class="flex items-start gap-5">
+              <span class="text-7xl md:text-8xl font-black text-primary leading-none">02</span>
+              <div class="flex flex-col pt-2">
+                <span class="font-mono text-xs uppercase tracking-tighter text-ink/50 dark:text-white/40">Jan 2024 — Jun 2025</span>
+                <h3 class="text-3xl md:text-4xl mt-2">Data Scientist</h3>
+                <span class="font-mono text-sm uppercase font-bold text-ink/60 dark:text-white/50 mt-1">KPMG &middot; Bangalore</span>
+              </div>
+            </div>
+          </div>
+          <div class="md:col-span-7 md:col-start-6">
+            <ul class="space-y-6">
+              <li class="flex gap-4"><span class="material-symbols-outlined text-primary mt-1">check_circle</span><p class="text-lg leading-relaxed text-ink/80 dark:text-white/70">Enhanced the algorithm to parse and chunk PDFs, implemented RAG to deliver coherent responses, cutting processing time by 40%.</p></li>
+              <li class="flex gap-4"><span class="material-symbols-outlined text-primary mt-1">check_circle</span><p class="text-lg leading-relaxed text-ink/80 dark:text-white/70">Designed an automated time-series forecasting tool using GPT-3.5 and Prophet, automating 80% of the work.</p></li>
+              <li class="flex gap-4"><span class="material-symbols-outlined text-primary mt-1">check_circle</span><p class="text-lg leading-relaxed text-ink/80 dark:text-white/70">Integrated open-source LLMs like Llama-3 into the existing architecture, resulting in a 30% reduction in operating costs.</p></li>
+              <li class="flex gap-4"><span class="material-symbols-outlined text-primary mt-1">check_circle</span><p class="text-lg leading-relaxed text-ink/80 dark:text-white/70">Optimized inventory parameters using Monte Carlo Simulation, hitting target service levels and cutting cost by $500k–$750k.</p></li>
+            </ul>
+            <div class="mt-8 flex flex-wrap gap-2">
+              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">Python</span>
+              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">SQL</span>
+              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">LLM / RAG</span>
+              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">Optimization</span>
+              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">FastAPI</span>
+              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">Azure ML</span>
+              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">Chroma</span>
+            </div>
+            <p class="mt-8 text-sm italic text-ink/60 dark:text-white/50 leading-relaxed border-l-2 border-primary/40 pl-4">
+              Earlier at KPMG — <strong>Data Scientist Trainee</strong> (Feb 2023 – May 2023): completed training in Python, SQL, ML, FastAPI, GenAI &amp; Power Apps; achieved 92% accuracy in KPMG's internal ML hackathon; built a Power Apps prototype for leadership automating 5+ dashboard workflows.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tweek Labs -->
+        <div class="reveal grid grid-cols-1 md:grid-cols-12 gap-8 items-start opacity-95">
+          <div class="md:col-span-4">
+            <div class="flex items-start gap-5">
+              <span class="text-7xl md:text-8xl font-black text-primary leading-none">03</span>
+              <div class="flex flex-col pt-2">
+                <span class="font-mono text-xs uppercase tracking-tighter text-ink/50 dark:text-white/40">Mar 2022 — Aug 2022</span>
+                <h3 class="text-3xl md:text-4xl mt-2">Data Science Intern</h3>
+                <span class="font-mono text-sm uppercase font-bold text-ink/60 dark:text-white/50 mt-1">Tweek Labs &middot; Bangalore</span>
+              </div>
+            </div>
+          </div>
+          <div class="md:col-span-7 md:col-start-6">
+            <ul class="space-y-6">
+              <li class="flex gap-4"><span class="material-symbols-outlined text-primary mt-1">check_circle</span><p class="text-lg leading-relaxed text-ink/80 dark:text-white/70">Formulated an aggregated scoring algorithm ranking 500+ players by stats to help organizations build leaderboards.</p></li>
+              <li class="flex gap-4"><span class="material-symbols-outlined text-primary mt-1">check_circle</span><p class="text-lg leading-relaxed text-ink/80 dark:text-white/70">Streamlined the data storage pipeline via Google Sheets API and built an interactive dashboard with Meta Base tracking 15+ KPIs.</p></li>
+              <li class="flex gap-4"><span class="material-symbols-outlined text-primary mt-1">check_circle</span><p class="text-lg leading-relaxed text-ink/80 dark:text-white/70">Applied KNN and a stacked model to predict ground contact with average accuracy of 11ms for precise leg parameters.</p></li>
+            </ul>
+            <div class="mt-8 flex flex-wrap gap-2">
+              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full border border-ink/10 dark:border-white/10">Python</span>
+              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full border border-ink/10 dark:border-white/10">Meta Base</span>
+              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full border border-ink/10 dark:border-white/10">Google Sheets API</span>
+              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full border border-ink/10 dark:border-white/10">Machine Learning</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ericsson -->
+        <div class="reveal grid grid-cols-1 md:grid-cols-12 gap-8 items-start opacity-90">
+          <div class="md:col-span-4">
+            <div class="flex items-start gap-5">
+              <span class="text-7xl md:text-8xl font-black text-primary leading-none">04</span>
+              <div class="flex flex-col pt-2">
+                <span class="font-mono text-xs uppercase tracking-tighter text-ink/50 dark:text-white/40">Sep 2021 — Oct 2021</span>
+                <h3 class="text-3xl md:text-4xl mt-2">Summer Intern</h3>
+                <span class="font-mono text-sm uppercase font-bold text-ink/60 dark:text-white/50 mt-1">Ericsson &middot; Kolkata</span>
+              </div>
+            </div>
+          </div>
+          <div class="md:col-span-7 md:col-start-6">
+            <ul class="space-y-6">
+              <li class="flex gap-4"><span class="material-symbols-outlined text-primary mt-1">check_circle</span><p class="text-lg leading-relaxed text-ink/80 dark:text-white/70">Ran Root Cause Analysis, predicting root causes and recommending resolutions, reducing overall processing time by 50%.</p></li>
+              <li class="flex gap-4"><span class="material-symbols-outlined text-primary mt-1">check_circle</span><p class="text-lg leading-relaxed text-ink/80 dark:text-white/70">Wrote a generalized parser for XML log files, producing clean JSON for Elasticsearch using Python and Beautiful Soup.</p></li>
+            </ul>
+            <div class="mt-8 flex flex-wrap gap-2">
+              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full border border-ink/10 dark:border-white/10">Python</span>
+              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full border border-ink/10 dark:border-white/10">Beautiful Soup</span>
+              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full border border-ink/10 dark:border-white/10">VS Code</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       PROJECTS
+       ========================================================= -->
+  <section id="projects" class="relative py-28 md:py-36 section-px">
+    <div class="mx-auto max-w-[1300px]">
+      <div class="reveal flex flex-col mb-16">
+        <h2 class="text-[13vw] md:text-8xl mb-4 font-black">Projects</h2>
+        <div class="h-1 w-24 bg-primary mb-6"></div>
+        <p class="text-ink/60 dark:text-white/50 max-w-xl text-lg font-light leading-relaxed">
+          Personal build focused on applying LLMs to real academic workflows. Featured below — more projects incoming.
+        </p>
+      </div>
+
+      <div class="reveal grid grid-cols-1 lg:grid-cols-5 gap-0 bg-paper-dim dark:bg-charcoal-2 rounded-3xl overflow-hidden border border-ink/5 dark:border-white/10 shadow-sm">
+        <div class="lg:col-span-2 relative min-h-[280px] flex items-center justify-center bg-ink overflow-hidden">
+          <img src="assets/gallery/milestone-ai.png" alt="Milestone.ai project screenshot" class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/0 to-ink/0"></div>
+        </div>
+        <div class="lg:col-span-3 p-8 md:p-12">
+          <span class="font-mono text-xs uppercase tracking-widest text-primary">Oct 2024 — Dec 2024</span>
+          <h3 class="text-3xl md:text-4xl font-display font-black uppercase tracking-tight mt-2 mb-4">Milestone.ai</h3>
+          <p class="text-base md:text-lg text-ink/70 dark:text-white/60 leading-relaxed mb-6">
+            AI-powered project tracker with role-based access control (RBAC) enabling instructors to track student progress and analyse project code &amp; reports. Uses an LLM to generate structured milestones, checklists, descriptions and deadlines from a project-details PDF, fetches code via the GitHub API, and analyses it to produce personalized feedback.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-8">
+            <span class="tech-tag text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 bg-primary text-white rounded-full">Python</span>
+            <span class="tech-tag text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 bg-primary text-white rounded-full">FastAPI</span>
+            <span class="tech-tag text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 bg-primary text-white rounded-full">Vue</span>
+            <span class="tech-tag text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 bg-primary text-white rounded-full">Llama-3</span>
+            <span class="tech-tag text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 bg-primary text-white rounded-full">LangChain JS</span>
+            <span class="tech-tag text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 bg-primary text-white rounded-full">SQLite</span>
+            <span class="tech-tag text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 bg-primary text-white rounded-full">RBAC</span>
+            <span class="tech-tag text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 bg-primary text-white rounded-full">GitHub API</span>
+          </div>
+          <!-- Real project URLs unknown — update the two hrefs below once available. -->
+          <div class="flex flex-wrap gap-4">
+            <a href="https://github.com/soumyadipghorai/Milestone.Ai" target="_blank" class="inline-flex items-center gap-2 border-2 border-ink dark:border-white/30 px-6 py-3 text-xs font-bold uppercase tracking-widest rounded-full hover:border-primary hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-[16px]">code</span> Source Code
+            </a>
+            <a href="https://milestone-ai.vercel.app/" target="_blank" class="inline-flex items-center gap-2 bg-ink text-white dark:bg-primary-light dark:text-ink px-6 py-3 text-xs font-bold uppercase tracking-widest rounded-full hover:bg-primary hover:text-white transition-colors">
+              <span class="material-symbols-outlined text-[16px]">open_in_new</span> App Link
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SKILLS
+       ========================================================= -->
+  <section id="skills" class="relative py-28 md:py-36 section-px bg-paper-dim dark:bg-charcoal-2 border-y border-ink/10 dark:border-white/10">
+    <div class="mx-auto max-w-[1300px]">
+      <h2 class="reveal text-[13vw] md:text-7xl mb-16 font-black text-right">Technical<br/>Expertise</h2>
+
+      <div class="reveal-stagger grid grid-cols-1 lg:grid-cols-3 gap-0 border-y border-ink/10 dark:border-white/10 divide-y lg:divide-y-0 lg:divide-x divide-ink/10 dark:divide-white/10 bg-paper dark:bg-ink/40 rounded-2xl overflow-hidden">
+
+        <!-- Languages & Frameworks -->
+        <div class="p-8 md:p-10">
+          <div class="flex items-center justify-between mb-10">
+            <h3 class="text-xl md:text-2xl font-display font-black uppercase tracking-tight">Languages &amp; Frameworks</h3>
+            <span class="material-symbols-outlined text-primary">terminal</span>
+          </div>
+          <div class="space-y-5">
+            <div><div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1.5"><span>Python</span><span>96%</span></div><div class="h-1.5 rounded-full bg-ink/10 dark:bg-white/10"><div class="h-full rounded-full bg-primary" style="width:96%"></div></div></div>
+            <div><div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1.5"><span>SQL</span><span>93%</span></div><div class="h-1.5 rounded-full bg-ink/10 dark:bg-white/10"><div class="h-full rounded-full bg-primary" style="width:93%"></div></div></div>
+            <div><div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1.5"><span>FastAPI / Flask</span><span>88%</span></div><div class="h-1.5 rounded-full bg-ink/10 dark:bg-white/10"><div class="h-full rounded-full bg-primary" style="width:88%"></div></div></div>
+            <div><div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1.5"><span>LangChain / LangGraph</span><span>85%</span></div><div class="h-1.5 rounded-full bg-ink/10 dark:bg-white/10"><div class="h-full rounded-full bg-primary" style="width:85%"></div></div></div>
+            <div><div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1.5"><span>PyTorch / scikit-learn</span><span>82%</span></div><div class="h-1.5 rounded-full bg-ink/10 dark:bg-white/10"><div class="h-full rounded-full bg-primary" style="width:82%"></div></div></div>
+            <div><div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1.5"><span>PySpark</span><span>90%</span></div><div class="h-1.5 rounded-full bg-ink/10 dark:bg-white/10"><div class="h-full rounded-full bg-primary" style="width:90%"></div></div></div>
+          </div>
+        </div>
+
+        <!-- Machine Learning -->
+        <div class="p-8 md:p-10">
+          <div class="flex items-center justify-between mb-10">
+            <h3 class="text-xl md:text-2xl font-display font-black uppercase tracking-tight">Machine Learning</h3>
+            <span class="material-symbols-outlined text-primary">psychology</span>
+          </div>
+          <div class="grid grid-cols-2 gap-6">
+            <div class="flex flex-col items-center gap-3">
+              <div class="relative size-20 radial-progress">
+                <svg class="size-full -rotate-90" viewbox="0 0 100 100">
+                  <circle class="text-ink/10 dark:text-white/10 stroke-current" cx="50" cy="50" fill="transparent" r="42" stroke-width="6"/>
+                  <circle class="value-circle text-primary stroke-current" data-pct="95" cx="50" cy="50" fill="transparent" r="42" stroke-linecap="round" stroke-width="6"/>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center font-display text-lg font-black">95</div>
+              </div>
+              <span class="text-[9px] font-black tracking-widest uppercase text-ink/60 dark:text-white/50 text-center">Regression &amp; Classification</span>
+            </div>
+            <div class="flex flex-col items-center gap-3">
+              <div class="relative size-20 radial-progress">
+                <svg class="size-full -rotate-90" viewbox="0 0 100 100">
+                  <circle class="text-ink/10 dark:text-white/10 stroke-current" cx="50" cy="50" fill="transparent" r="42" stroke-width="6"/>
+                  <circle class="value-circle text-primary stroke-current" data-pct="88" cx="50" cy="50" fill="transparent" r="42" stroke-linecap="round" stroke-width="6"/>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center font-display text-lg font-black">88</div>
+              </div>
+              <span class="text-[9px] font-black tracking-widest uppercase text-ink/60 dark:text-white/50 text-center">NLP / Transformers</span>
+            </div>
+            <div class="flex flex-col items-center gap-3">
+              <div class="relative size-20 radial-progress">
+                <svg class="size-full -rotate-90" viewbox="0 0 100 100">
+                  <circle class="text-ink/10 dark:text-white/10 stroke-current" cx="50" cy="50" fill="transparent" r="42" stroke-width="6"/>
+                  <circle class="value-circle text-primary stroke-current" data-pct="80" cx="50" cy="50" fill="transparent" r="42" stroke-linecap="round" stroke-width="6"/>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center font-display text-lg font-black">80</div>
+              </div>
+              <span class="text-[9px] font-black tracking-widest uppercase text-ink/60 dark:text-white/50 text-center">ANN / RNN / LoRA</span>
+            </div>
+            <div class="flex flex-col items-center gap-3">
+              <div class="relative size-20 radial-progress">
+                <svg class="size-full -rotate-90" viewbox="0 0 100 100">
+                  <circle class="text-ink/10 dark:text-white/10 stroke-current" cx="50" cy="50" fill="transparent" r="42" stroke-width="6"/>
+                  <circle class="value-circle text-primary stroke-current" data-pct="90" cx="50" cy="50" fill="transparent" r="42" stroke-linecap="round" stroke-width="6"/>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center font-display text-lg font-black">90</div>
+              </div>
+              <span class="text-[9px] font-black tracking-widest uppercase text-ink/60 dark:text-white/50 text-center">EDA / Clustering</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tools & Technologies -->
+        <div class="p-8 md:p-10">
+          <div class="flex items-center justify-between mb-10">
+            <h3 class="text-xl md:text-2xl font-display font-black uppercase tracking-tight">Tools &amp; Technologies</h3>
+            <span class="material-symbols-outlined text-primary">database</span>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="px-3.5 py-2 text-xs font-bold tracking-widest text-ink/70 dark:text-white/60 uppercase border border-ink/15 dark:border-white/15 rounded-full">Azure ML</span>
+            <span class="px-3.5 py-2 text-xs font-bold tracking-widest text-ink/70 dark:text-white/60 uppercase border border-ink/15 dark:border-white/15 rounded-full">Tableau</span>
+            <span class="px-3.5 py-2 text-xs font-bold tracking-widest text-ink/70 dark:text-white/60 uppercase border border-ink/15 dark:border-white/15 rounded-full">GCP</span>
+            <span class="px-3.5 py-2 text-xs font-bold tracking-widest text-ink/70 dark:text-white/60 uppercase border border-ink/15 dark:border-white/15 rounded-full">A/B Testing</span>
+            <span class="px-3.5 py-2 text-xs font-bold tracking-widest text-ink/70 dark:text-white/60 uppercase border border-ink/15 dark:border-white/15 rounded-full">Kafka</span>
+            <span class="px-3.5 py-2 text-xs font-bold tracking-widest text-ink/70 dark:text-white/60 uppercase border border-ink/15 dark:border-white/15 rounded-full">Docker</span>
+            <span class="px-3.5 py-2 text-xs font-bold tracking-widest text-ink/70 dark:text-white/60 uppercase border border-ink/15 dark:border-white/15 rounded-full">Apache Druid</span>
+            <span class="px-3.5 py-2 text-xs font-bold tracking-widest text-ink/70 dark:text-white/60 uppercase border border-ink/15 dark:border-white/15 rounded-full">Ollama</span>
+            <span class="px-3.5 py-2 text-xs font-bold tracking-widest text-ink/70 dark:text-white/60 uppercase border border-ink/15 dark:border-white/15 rounded-full">Streamlit</span>
+            <span class="px-3.5 py-2 text-xs font-bold tracking-widest text-ink/70 dark:text-white/60 uppercase border border-ink/15 dark:border-white/15 rounded-full">Git</span>
+            <span class="px-3.5 py-2 text-xs font-bold tracking-widest text-ink/70 dark:text-white/60 uppercase border border-ink/15 dark:border-white/15 rounded-full">RAG</span>
+            <span class="px-3.5 py-2 text-xs font-bold tracking-widest text-ink/70 dark:text-white/60 uppercase border border-ink/15 dark:border-white/15 rounded-full">Hypothesis testing</span>
+            <span class="px-3.5 py-2 text-xs font-bold tracking-widest text-ink/70 dark:text-white/60 uppercase border border-ink/15 dark:border-white/15 rounded-full">Chroma</span>
+            <span class="px-3.5 py-2 text-xs font-bold tracking-widest text-ink/70 dark:text-white/60 uppercase border border-ink/15 dark:border-white/15 rounded-full">Time Series Forecasting</span>
+            <span class="px-3.5 py-2 text-xs font-bold tracking-widest text-ink/70 dark:text-white/60 uppercase border border-ink/15 dark:border-white/15 rounded-full">Kubernetes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SERVICES
+       ========================================================= -->
+  <section id="services" class="relative py-28 md:py-36 section-px dot-grid">
+    <div class="mx-auto max-w-[1300px]">
+      <div class="reveal mb-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+        <div>
+          <span class="text-primary font-black text-xs uppercase tracking-[0.4em] mb-4 block">What I Offer</span>
+          <h2 class="text-6xl md:text-8xl font-black leading-[0.9]">Services</h2>
+        </div>
+        <p class="text-ink/50 dark:text-white/40 text-lg max-w-sm border-l border-primary pl-6">
+          Practical, production-minded data science — from raw pipelines to deployed intelligence.
+        </p>
+      </div>
+
+      <!-- 6-col grid on desktop/laptop: row 1 = three equal cards (2 cols each),
+           row 2 = Technical Mentoring (4 cols, bigger) + Dashboarding & Analytics (2 cols, smaller) -->
+      <div class="reveal-stagger grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
+        <div class="lg:col-span-2 p-8 bg-paper-dim dark:bg-charcoal-2 border border-ink/5 dark:border-white/10 rounded-3xl hover:shadow-xl transition-all">
+          <div class="size-12 rounded-full bg-primary/15 flex items-center justify-center mb-8">
+            <span class="material-symbols-outlined text-primary">smart_toy</span>
+          </div>
+          <h3 class="text-2xl font-black mb-3 uppercase">LLM &amp; RAG Systems</h3>
+          <p class="text-ink/60 dark:text-white/50 text-sm leading-relaxed">Designing retrieval-augmented generation pipelines, agentic workflows and fine-tuned SLMs that ship to production.</p>
+        </div>
+        <div class="lg:col-span-2 p-8 bg-paper-dim dark:bg-charcoal-2 border border-ink/5 dark:border-white/10 rounded-3xl hover:shadow-xl transition-all">
+          <div class="size-12 rounded-full bg-primary/15 flex items-center justify-center mb-8">
+            <span class="material-symbols-outlined text-primary">hub</span>
+          </div>
+          <h3 class="text-xl font-black mb-3 uppercase">ML Pipeline Engineering</h3>
+          <p class="text-ink/60 dark:text-white/50 text-sm leading-relaxed">Building reliable, scalable machine learning pipelines from raw data to deployed model.</p>
+        </div>
+        <div class="lg:col-span-2 p-8 bg-paper-dim dark:bg-charcoal-2 border border-ink/5 dark:border-white/10 rounded-3xl hover:shadow-xl transition-all">
+          <div class="size-12 rounded-full bg-primary/15 flex items-center justify-center mb-8">
+            <span class="material-symbols-outlined text-primary">timeline</span>
+          </div>
+          <h3 class="text-xl font-black mb-3 uppercase">Data Analysis &amp; Forecasting</h3>
+          <p class="text-ink/60 dark:text-white/50 text-sm leading-relaxed">Time-series forecasting, statistical modelling and optimization to inform real business decisions.</p>
+        </div>
+        <div class="lg:col-span-4 p-8 bg-paper-dim dark:bg-charcoal-2 border border-ink/5 dark:border-white/10 rounded-3xl hover:shadow-xl transition-all flex flex-col md:flex-row items-start md:items-center gap-6">
+          <div class="size-14 rounded-full bg-primary/15 flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-primary text-2xl">school</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-2xl md:text-3xl font-black mb-2 uppercase">Technical Mentoring</h3>
+            <p class="text-ink/60 dark:text-white/50 text-base leading-relaxed mb-5">1:1 and cohort mentoring on data science fundamentals, interview prep and ML career paths — 200+ students mentored to date.</p>
+            <!-- Best-guess Topmate handle — verify/update the real profile URL before publishing. -->
+            <a href="https://topmate.io/soumyadipghorai" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-ink text-white dark:bg-primary-light dark:text-ink px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">
+              Book a Session
+              <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+            </a>
+          </div>
+        </div>
+        <div class="lg:col-span-2 p-8 bg-primary text-white rounded-3xl relative overflow-hidden hover:shadow-xl transition-all">
+          <div class="absolute -top-10 -right-10 size-40 bg-white/10 rounded-full blur-3xl"></div>
+          <div class="relative z-10">
+            <div class="size-12 rounded-full bg-white/20 flex items-center justify-center mb-8">
+              <span class="material-symbols-outlined">dashboard_customize</span>
+            </div>
+            <h3 class="text-xl font-black mb-3 uppercase">Dashboarding &amp; Analytics</h3>
+            <p class="text-white/85 text-sm leading-relaxed">Interactive dashboards with Streamlit and Tableau that turn complex data into clear, actionable narratives.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       "TESTIMONIALS" reframed as What I Bring to a Team
+       ========================================================= -->
+  <section id="highlights" class="relative py-28 md:py-32 section-px bg-ink text-paper">
+    <div class="mx-auto max-w-[1300px]">
+      <div class="reveal flex flex-col md:flex-row items-center gap-10 md:gap-14 mb-20">
+        <div class="text-center md:text-left md:w-2/5 shrink-0">
+          <span class="text-primary-light font-black text-xs uppercase tracking-[0.4em] mb-4 block">Why Work With Me</span>
+          <h2 class="text-6xl md:text-7xl font-black">What I Bring<br/>to a Team</h2>
+        </div>
+        <!-- Wide banner branding photo for this section. -->
+        <div class="brand-photo-frame w-full md:flex-1 aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden border border-white/10 relative bg-charcoal-2">
+          <img src="assets/gallery/banner-img.JPG" alt="Soumyadip Ghorai" class="h-full w-full object-cover" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+          <div class="absolute inset-0 hidden flex-col items-center justify-center gap-3 text-white/20">
+            <span class="material-symbols-outlined text-4xl">add_a_photo</span>
+            <span class="font-mono text-[9px] uppercase tracking-widest text-center px-4">Add assets/gallery/banner-img.JPG</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-stagger grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+        <div class="p-8 bg-charcoal-2 rounded-2xl border border-white/10">
+          <span class="material-symbols-outlined text-primary-light text-3xl mb-4 block">groups</span>
+          <p class="text-lg font-medium leading-relaxed mb-3">Mentored 200+ students in data science fundamentals, interview prep and applied ML.</p>
+        </div>
+        <div class="p-8 bg-charcoal-2 rounded-2xl border border-white/10">
+          <span class="material-symbols-outlined text-primary-light text-3xl mb-4 block">campaign</span>
+          <p class="text-lg font-medium leading-relaxed mb-3">Led the ML team at GDSC, and was solo winner of two consecutive Hour-of-Code hackathons at KPMG.</p>
+        </div>
+        <div class="p-8 bg-charcoal-2 rounded-2xl border border-white/10">
+          <span class="material-symbols-outlined text-primary-light text-3xl mb-4 block">podium</span>
+          <p class="text-lg font-medium leading-relaxed mb-3">Featured speaker at the GE Vernova Users Conference 2026, presenting real-time AI systems in production.</p>
+        </div>
+      </div>
+
+      <!-- NOTE: No real client/manager testimonials exist yet — the card below is a
+           clearly-labeled placeholder. Replace with genuine feedback once collected. -->
+      <div class="reveal max-w-2xl mx-auto p-8 md:p-10 bg-charcoal-2 rounded-2xl border border-dashed border-white/20 text-center">
+        <span class="material-symbols-outlined text-primary-light text-3xl mb-4 block mx-auto">format_quote</span>
+        <p class="text-white/70 italic leading-relaxed mb-6">"Quote pending — replace with real feedback once collected."</p>
+        <p class="text-sm font-bold uppercase tracking-widest text-white/50">Manager, GE Vernova <span class="text-primary-light">(placeholder byline)</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       GALLERY — real photos, playful masonry with hover-tilt + lightbox
+       ========================================================= -->
+  <section id="gallery" class="relative py-28 md:py-36 section-px dot-grid">
+    <div class="mx-auto max-w-[1300px]">
+      <div class="reveal mb-6 flex items-center gap-8">
+        <h2 class="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9]">Gallery</h2>
+        <div class="h-px bg-ink/10 dark:bg-white/10 flex-1"></div>
+        <span class="hidden md:block text-[10px] font-black uppercase tracking-[0.4em] text-ink/30 dark:text-white/30">Off Duty</span>
+      </div>
+      <p class="reveal text-ink/60 dark:text-white/50 max-w-xl text-lg font-light leading-relaxed mb-16">
+        Life outside the notebooks — trips, friends, and the odd stray moment. Click a photo to zoom in.
+      </p>
+
+      <!--
+        Two rows, each one big tile + three small tiles, with each image
+        given subtle parallax drift on scroll (see script.js). Row 2 mirrors
+        row 1's layout (big tile swaps to the other end). Heights are fixed
+        per breakpoint so big + small tiles line up edge-to-edge exactly.
+      -->
+      <div class="reveal-stagger flex flex-col gap-4 md:gap-6">
+
+        <!-- Row 1: big, small, small, small -->
+        <div class="flex flex-col sm:flex-row gap-4 md:gap-6 h-auto sm:h-[280px] md:h-[360px] lg:h-[420px]">
+          <div class="gallery-tile parallax-wrap flex-[2] rounded-2xl overflow-hidden border border-ink/5 dark:border-white/10 aspect-[4/3] sm:aspect-auto h-[220px] sm:h-full" data-full="assets/gallery/DSC_0152.JPG" data-caption="On the road">
+            <img class="parallax-img" decoding="async" src="assets/gallery/DSC_0152.JPG" alt="Travel snapshot" loading="lazy"/>
+            <div class="gallery-caption absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+              <h4 class="text-white text-lg font-black uppercase tracking-tight">On the Road</h4>
+            </div>
+          </div>
+          <div class="gallery-tile parallax-wrap flex-1 rounded-2xl overflow-hidden border border-ink/5 dark:border-white/10 aspect-[4/3] sm:aspect-auto h-[160px] sm:h-full" data-full="assets/gallery/DSC_0982.JPG" data-caption="Good company">
+            <img class="parallax-img" decoding="async" src="assets/gallery/DSC_0982.JPG" alt="Friends hangout" loading="lazy"/>
+            <div class="gallery-caption absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+              <h4 class="text-white text-sm font-black uppercase tracking-tight">Good Company</h4>
+            </div>
+          </div>
+          <div class="gallery-tile parallax-wrap flex-1 rounded-2xl overflow-hidden border border-ink/5 dark:border-white/10 aspect-[4/3] sm:aspect-auto h-[160px] sm:h-full" data-full="assets/gallery/DSC_1672.JPG" data-caption="Weekend trip">
+            <img class="parallax-img" decoding="async" src="assets/gallery/DSC_1672.JPG" alt="Weekend trip" loading="lazy"/>
+            <div class="gallery-caption absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+              <h4 class="text-white text-sm font-black uppercase tracking-tight">Weekend Trip</h4>
+            </div>
+          </div>
+          <div class="gallery-tile parallax-wrap flex-1 rounded-2xl overflow-hidden border border-ink/5 dark:border-white/10 aspect-[4/3] sm:aspect-auto h-[160px] sm:h-full" data-full="assets/gallery/DSC_3515.JPG" data-caption="Somewhere scenic">
+            <img class="parallax-img" decoding="async" src="assets/gallery/DSC_3515.JPG" alt="Scenic moment" loading="lazy"/>
+            <div class="gallery-caption absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+              <h4 class="text-white text-sm font-black uppercase tracking-tight">Chasing Views</h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: reversed — small, small, small, big -->
+        <div class="flex flex-col sm:flex-row gap-4 md:gap-6 h-auto sm:h-[280px] md:h-[360px] lg:h-[420px]">
+          <div class="gallery-tile parallax-wrap flex-1 rounded-2xl overflow-hidden border border-ink/5 dark:border-white/10 aspect-[4/3] sm:aspect-auto h-[160px] sm:h-full" data-full="assets/gallery/DSC_4815.JPG" data-caption="Off the clock">
+            <img class="parallax-img" decoding="async" src="assets/gallery/DSC_4815.JPG" alt="Off the clock" loading="lazy"/>
+            <div class="gallery-caption absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+              <h4 class="text-white text-sm font-black uppercase tracking-tight">Off the Clock</h4>
+            </div>
+          </div>
+          <div class="gallery-tile parallax-wrap flex-1 rounded-2xl overflow-hidden border border-ink/5 dark:border-white/10 aspect-[4/3] sm:aspect-auto h-[160px] sm:h-full" data-full="assets/gallery/DSC_5115.JPG" data-caption="Good times">
+            <img class="parallax-img" decoding="async" src="assets/gallery/DSC_5115.JPG" alt="Good times" loading="lazy"/>
+            <div class="gallery-caption absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+              <h4 class="text-white text-sm font-black uppercase tracking-tight">Good Times</h4>
+            </div>
+          </div>
+          <div class="gallery-tile parallax-wrap flex-1 rounded-2xl overflow-hidden border border-ink/5 dark:border-white/10 aspect-[4/3] sm:aspect-auto h-[160px] sm:h-full" data-full="assets/gallery/DSC_4724.JPG" data-caption="Golden hour">
+            <img class="parallax-img" decoding="async" src="assets/gallery/DSC_4724.JPG" alt="Golden hour moment" loading="lazy"/>
+            <div class="gallery-caption absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+              <h4 class="text-white text-sm font-black uppercase tracking-tight">Golden Hour</h4>
+            </div>
+          </div>
+          <div class="gallery-tile parallax-wrap flex-[2] rounded-2xl overflow-hidden border border-ink/5 dark:border-white/10 aspect-[4/3] sm:aspect-auto h-[220px] sm:h-full" data-full="assets/gallery/DSC_4628.JPG" data-caption="With the crew">
+            <img class="parallax-img" decoding="async" src="assets/gallery/DSC_4628.JPG" alt="With friends" loading="lazy"/>
+            <div class="gallery-caption absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+              <h4 class="text-white text-lg font-black uppercase tracking-tight">With the Crew</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox: opens full-size on tile click, closes on backdrop click / Esc / close button -->
+  <div id="lightbox" aria-hidden="true">
+    <button id="lightbox-close" type="button" aria-label="Close" class="p-2 hover:text-primary-light transition-colors">
+      <span class="material-symbols-outlined text-3xl">close</span>
+    </button>
+    <figure class="flex flex-col items-center gap-4">
+      <img id="lightbox-img" src="" alt=""/>
+      <figcaption id="lightbox-caption" class="text-white/70 text-sm font-mono uppercase tracking-widest"></figcaption>
+    </figure>
+  </div>
+
+</main>
+
+<!-- =========================================================
+     FOOTER / CONTACT
+     ========================================================= -->
+<footer id="contact" class="relative pt-24 pb-12 section-px bg-paper-dim dark:bg-charcoal-2 border-t border-ink/10 dark:border-white/10">
+  <div class="mx-auto max-w-[1300px]">
+
+    <div class="reveal flex flex-col lg:flex-row justify-between items-start mb-20 gap-12">
+      <div class="max-w-3xl">
+        <h2 class="text-6xl md:text-8xl lg:text-9xl font-black text-primary leading-[0.9]">Have an Idea?</h2>
+        <h2 class="text-6xl md:text-8xl lg:text-9xl font-black leading-[0.9]">Let's Talk.</h2>
+      </div>
+      <div class="lg:pt-8 max-w-sm">
+        <p class="text-base text-ink/60 dark:text-white/50 leading-relaxed mb-6">
+          Open to full-time roles, freelance collaborations and high-impact data science &amp; AI projects. Reach out — I read every message.
+        </p>
+        <a class="group inline-flex items-center gap-3 border-2 border-ink dark:border-white/30 px-6 py-3.5 rounded-full hover:bg-ink hover:text-white dark:hover:bg-white dark:hover:text-ink transition-all" href="mailto:ghorai.soumyadip33@gmail.com">
+          <span class="uppercase font-bold tracking-widest text-xs">Email Me Directly</span>
+          <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-12 py-16 border-t border-ink/10 dark:border-white/10">
+
+      <!-- Contact form -->
+      <div class="lg:col-span-6">
+        <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-ink/40 dark:text-white/30 mb-6">Send a Message</h4>
+        <!-- Submits to Formspree (https://formspree.io/f/meqnwdld) via fetch() in
+             script.js so the page doesn't reload; falls back to a normal POST
+             if JS is unavailable. -->
+        <form id="contact-form" action="https://formspree.io/f/meqnwdld" method="POST" class="space-y-4">
+          <div>
+            <label for="cf-name" class="sr-only">Name</label>
+            <input id="cf-name" name="name" type="text" required placeholder="Your Name" class="w-full bg-paper dark:bg-ink border border-ink/15 dark:border-white/15 rounded-xl px-5 py-3.5 text-sm focus:border-primary outline-none transition-colors"/>
+          </div>
+          <div>
+            <label for="cf-email" class="sr-only">Email</label>
+            <input id="cf-email" name="email" type="email" required placeholder="Your Email" class="w-full bg-paper dark:bg-ink border border-ink/15 dark:border-white/15 rounded-xl px-5 py-3.5 text-sm focus:border-primary outline-none transition-colors"/>
+          </div>
+          <div>
+            <label for="cf-message" class="sr-only">Message</label>
+            <textarea id="cf-message" name="message" required rows="4" placeholder="Your Message" class="w-full bg-paper dark:bg-ink border border-ink/15 dark:border-white/15 rounded-xl px-5 py-3.5 text-sm focus:border-primary outline-none transition-colors resize-none"></textarea>
+          </div>
+          <button type="submit" class="inline-flex items-center gap-2 bg-ink text-white dark:bg-primary-light dark:text-ink px-7 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">
+            Send Message
+            <span class="material-symbols-outlined text-[16px]">send</span>
+          </button>
+          <p id="form-status" role="status" class="hidden text-xs text-ink/50 dark:text-white/40 pt-2"></p>
+        </form>
+      </div>
+
+      <div class="lg:col-span-3">
+        <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-ink/40 dark:text-white/30 mb-6">Quick Links</h4>
+        <ul class="space-y-4">
+          <li><a class="footer-link text-sm font-medium hover:text-primary transition-colors" href="#about">About Me</a></li>
+          <li><a class="footer-link text-sm font-medium hover:text-primary transition-colors" href="#experience">Experience</a></li>
+          <li><a class="footer-link text-sm font-medium hover:text-primary transition-colors" href="#projects">Projects</a></li>
+          <li><a class="footer-link text-sm font-medium hover:text-primary transition-colors" href="#services">Services</a></li>
+        </ul>
+      </div>
+
+      <!-- Social links: placeholder URLs, verify/update before publishing -->
+      <div class="lg:col-span-3">
+        <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-ink/40 dark:text-white/30 mb-6">Connect</h4>
+        <div class="flex flex-wrap gap-3">
+          <a href="https://www.linkedin.com/in/soumyadipghorai/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn" class="social-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/></svg>
+          </a>
+          <a href="https://github.com/soumyadipghorai" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub" class="social-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.754-1.333-1.754-1.089-.745.083-.729.083-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+          <a href="https://leetcode.com/soumyadipghorai" target="_blank" rel="noopener" aria-label="LeetCode" title="LeetCode" class="social-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.098 8.017-.152l2.396-2.392c.54-.545.54-1.43-.005-1.976-.545-.545-1.43-.545-1.976 0l-2.415 2.41a3.264 3.264 0 0 1-4.523.088l-4.276-4.193c-.218-.211-.4-.454-.537-.719a2.906 2.906 0 0 1-.336-1.539c.005-.336.058-.667.157-.987a2.9 2.9 0 0 1 .673-1.089l3.854-4.126 4.53-4.848a1.374 1.374 0 0 0-.04-1.941A1.375 1.375 0 0 0 13.483 0zm2.626 8.978a1.374 1.374 0 1 0 0 2.748h6.517a1.374 1.374 0 1 0 0-2.748h-6.517z"/></svg>
+          </a>
+          <a href="mailto:ghorai.soumyadip33@gmail.com" aria-label="Email" title="Email" class="social-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6.75A2.25 2.25 0 0 1 5.25 4.5h13.5A2.25 2.25 0 0 1 21 6.75v10.5A2.25 2.25 0 0 1 18.75 19.5H5.25A2.25 2.25 0 0 1 3 17.25V6.75Z" stroke-linecap="round" stroke-linejoin="round"/><path d="m3.5 6.5 8.5 6 8.5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- The LinkedIn / GitHub / LeetCode URLs above are best-guess placeholders based on the
+         name "soumyadipghorai" — please verify and correct them if the real handles differ. -->
+
+    <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-ink/10 dark:border-white/10 text-[10px] uppercase tracking-[0.3em] font-bold text-ink/40 dark:text-white/30">
+      <p>&copy; <span id="current-year">2026</span> Soumyadip Ghorai. All Rights Reserved.</p>
+      <p class="mt-4 md:mt-0">Bangalore, India &middot; +91 7872817970</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -238,6 +238,56 @@
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
+    /* ---------------- Experience hover-preview card ----------------
+       Desktop/hover-capable devices only: a small themed card trails the
+       cursor while hovering a role/company block in the Experience
+       timeline, swapping its gradient/icon/label per entry and
+       fading + scaling in on enter, out on leave. */
+    (function () {
+      if (!window.matchMedia || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+      var triggers = Array.prototype.slice.call(document.querySelectorAll(".exp-trigger"));
+      var card = document.getElementById("exp-hover-card");
+      var cardImg = document.getElementById("exp-hover-card-img");
+      var cardLabel = document.getElementById("exp-hover-card-label");
+      if (!triggers.length || !card || !cardImg || !cardLabel) return;
+
+      var OFFSET_X = 34, OFFSET_Y = -70; // card sits up and to the right of the cursor
+      var mouseX = 0, mouseY = 0, curX = 0, curY = 0, active = false, primed = false;
+
+      function render() {
+        curX += (mouseX - curX) * 0.16;
+        curY += (mouseY - curY) * 0.16;
+        var scale = active ? 1 : 0.85;
+        var rotate = active ? -2 : -5;
+        card.style.transform =
+          "translate(" + (curX + OFFSET_X) + "px, " + (curY + OFFSET_Y) + "px) " +
+          "translate(-50%, -50%) scale(" + scale + ") rotate(" + rotate + "deg)";
+        window.requestAnimationFrame(render);
+      }
+      window.requestAnimationFrame(render);
+
+      triggers.forEach(function (trigger) {
+        trigger.addEventListener("mouseenter", function (e) {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          if (!primed) { curX = mouseX; curY = mouseY; primed = true; }
+          active = true;
+          card.classList.add("is-visible");
+          var imgSrc = trigger.getAttribute("data-img");
+          if (imgSrc && cardImg.getAttribute("src") !== imgSrc) cardImg.src = imgSrc;
+          cardLabel.textContent = trigger.getAttribute("data-company") || "";
+        });
+        trigger.addEventListener("mousemove", function (e) {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        });
+        trigger.addEventListener("mouseleave", function () {
+          active = false;
+          card.classList.remove("is-visible");
+        });
+      });
+    })();
+
     /* ---------------- Gallery parallax ----------------
        Each .parallax-img is 130% the height of its cropped frame; on scroll
        we slide it vertically based on how far the tile's center is from the

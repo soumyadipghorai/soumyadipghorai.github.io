@@ -65,8 +65,8 @@ html, body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 340px;
-  height: 240px;
+  width: 380px;
+  height: 270px;
   border-radius: 0.5rem;
   overflow: hidden;
   pointer-events: none;
@@ -110,6 +110,108 @@ html, body {
 }
 @media (prefers-reduced-motion: reduce) {
   .exp-hover-card { transition: none; }
+}
+
+/* Mobile-only: each entry's own photo flows left-to-right THROUGH that
+   entry's own text (number/date/role/company), scroll-triggered by that
+   entry's own position in the viewport — see the .exp-flow-img handling
+   in script.js, which reuses the same data-img attribute the desktop
+   hover card already reads off .exp-trigger. The image sits ABOVE the
+   text in stacking order; a text-shadow on .exp-flow-text (matching the
+   one already used on the desktop hover card's label) keeps the glyphs
+   readable as the image passes over them. Hidden entirely on
+   hover-capable/fine pointer devices, which keep the existing
+   cursor-following card instead. */
+.exp-trigger {
+  position: relative;
+}
+@media (max-width: 767px) {
+  .exp-trigger {
+    overflow: hidden;
+    border-radius: 12px;
+    min-height: 158px;
+  }
+}
+.exp-flow-img-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+.exp-flow-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 84%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  border-radius: 10px;
+  transform: translateX(-160%);
+  will-change: transform;
+}
+/* Per-entry crop position — tweak each independently (e.g. lower the
+   second number to pan the image up, raise it to pan down). */
+.exp-flow-img-1 { object-position: 50% 80%; } /* GE Vernova */
+.exp-flow-img-2 { object-position: 50% 30%; } /* KPMG */
+.exp-flow-img-3 { object-position: 50% 44%; } /* Tweek Labs */
+.exp-flow-img-4 { object-position: 50% 55%; } /* Ericsson */
+.exp-flow-text {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+}
+@media (hover: hover) and (pointer: fine) {
+  .exp-flow-img-wrap { display: none; }
+  .exp-flow-text { text-shadow: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .exp-flow-img { transition: none !important; transform: translateX(-20%) !important; }
+}
+
+/* ---------- Services: tap-to-expand accordion on mobile only ---------- */
+.service-card-header {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+}
+.service-card--pinned-open .service-card-header {
+  cursor: default;
+}
+.service-card-chevron {
+  transition: transform 0.35s var(--ease);
+}
+.service-card.is-open .service-card-chevron {
+  transform: rotate(180deg);
+}
+@media (max-width: 767px) {
+  .service-card-body {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-top: 0;
+    transition: max-height 0.45s var(--ease), opacity 0.4s var(--ease), margin-top 0.45s var(--ease);
+  }
+  .service-card.is-open .service-card-body {
+    max-height: 420px;
+    opacity: 1;
+    margin-top: 0.75rem;
+  }
+  /* Technical Mentoring stays a normal, always-expanded card on mobile
+     rather than collapsing like the other four. */
+  .service-card--pinned-open .service-card-body {
+    max-height: none;
+    opacity: 1;
+    overflow: visible;
+    margin-top: 0.75rem;
+  }
+}
+@media (min-width: 768px) {
+  .service-card-header { cursor: default; }
 }
 
 /* ---------- Preloader ---------- */
@@ -268,6 +370,11 @@ html, body {
 /* ---------- Skill radial bars ---------- */
 .radial-progress circle {
   transition: stroke-dashoffset 1.2s var(--ease);
+}
+
+/* ---------- Skill linear bars (animate width 0 -> target on scroll) ---------- */
+.skill-bar-fill {
+  transition: width 1.2s var(--ease);
 }
 
 /* ---------- Footer social icon buttons ---------- */

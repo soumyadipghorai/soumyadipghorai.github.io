@@ -311,19 +311,19 @@
           <div class="pt-6">
             <h3 class="text-2xl font-display font-black uppercase mb-6">Education</h3>
             <div class="space-y-5">
-              <div class="flex gap-5 border-l-4 border-primary pl-5">
+              <div class="flex gap-5 border-l-4 border-primary pl-5 transition-transform duration-300 hover:translate-x-1.5">
                 <div>
                   <p class="font-bold text-lg leading-tight">BS in Data Science and Applications</p>
                   <p class="text-sm text-ink/60 dark:text-white/50">Indian Institute of Technology, Madras &middot; 2021–2025</p>
                 </div>
               </div>
-              <div class="flex gap-5 border-l-4 border-primary/60 pl-5">
+              <div class="flex gap-5 border-l-4 border-primary/60 pl-5 transition-transform duration-300 hover:translate-x-1.5">
                 <div>
                   <p class="font-bold text-lg leading-tight">MSc Data Science</p>
                   <p class="text-sm text-ink/60 dark:text-white/50">Christ University, Bangalore &middot; 2021–2023</p>
                 </div>
               </div>
-              <div class="flex gap-5 border-l-4 border-primary/30 pl-5">
+              <div class="flex gap-5 border-l-4 border-primary/30 pl-5 transition-transform duration-300 hover:translate-x-1.5">
                 <div>
                   <p class="font-bold text-lg leading-tight">BSc Statistics</p>
                   <p class="text-sm text-ink/60 dark:text-white/50">University of Calcutta &middot; 2018–2021</p>
@@ -345,7 +345,7 @@
           <!-- Deliberately different info from the hero's stat strip (3+ / 3X / 200+ / 975+)
                to avoid repeating the same numbers twice on one page. -->
           <div class="grid grid-cols-2 gap-4">
-            <div class="bg-paper-dim dark:bg-charcoal-2 p-6 rounded-2xl border border-ink/5 dark:border-white/10">
+            <div class="bg-paper-dim dark:bg-charcoal-2 p-6 rounded-2xl border border-ink/5 dark:border-white/10 hover:-translate-y-1.5 hover:shadow-lg transition-all duration-300">
               <!-- <span class="material-symbols-outlined text-primary text-3xl mb-3 block">query_stats</span>
               <span class="text-3xl font-display font-black block">40+</span>
               <span class="font-mono text-[10px] uppercase text-ink/60 dark:text-white/50">Live KPIs Tracked</span> -->
@@ -353,7 +353,7 @@
               <span class="text-3xl font-display font-black block">10+</span>
               <span class="font-mono text-[10px] uppercase text-ink/60 dark:text-white/50">Projects completed</span>
             </div>
-            <div class="bg-primary p-6 rounded-2xl border border-ink/5 dark:border-white/10">
+            <div class="bg-primary p-6 rounded-2xl border border-ink/5 dark:border-white/10 hover:-translate-y-1.5 hover:shadow-lg transition-all duration-300">
               <span class="material-symbols-outlined text-3xl mb-3 block">work</span>
               <span class="text-xl font-display font-black block leading-tight">GE Vernova</span>
               <span class="font-mono text-[10px] uppercase text-white/80">Currently At</span>
@@ -386,12 +386,21 @@
         <!-- GE Vernova -->
         <div class="reveal grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           <div class="md:col-span-4 exp-trigger group" data-img="assets/gallery/hover-img-1.webp" data-company="GE Vernova">
-            <div class="flex items-start gap-5">
+            <!-- Mobile-only: a photo flows left-to-right through this entry's own
+                 text, triggered purely by this entry's scroll position (see
+                 .exp-flow-img handling in script.js). Sits behind the text
+                 (z-index), so the glyphs stay fully legible as it passes.
+                 Desktop is untouched — still the cursor-following hover card. -->
+            <div class="exp-flow-img-wrap md:hidden" data-direction="ltr" aria-hidden="true">
+              <img class="exp-flow-img exp-flow-img-1" src="assets/gallery/hover-img-1.webp" alt="" loading="lazy" decoding="async"/>
+            </div>
+            <div class="flex items-start gap-5 exp-flow-text">
               <span class="exp-num text-7xl md:text-8xl font-black text-primary leading-none transition-all duration-300 opacity-60 group-hover:opacity-100 group-hover:-translate-y-1">01</span>
               <div class="flex flex-col pt-2 transition-transform duration-300 group-hover:translate-x-1.5">
-                <span class="font-mono text-xs uppercase tracking-tighter text-ink/50 dark:text-white/40">Jun 2025 — Present</span>
-                <h3 class="text-3xl md:text-4xl mt-2 transition-colors duration-300 group-hover:text-primary">Data Scientist</h3>
-                <span class="font-mono text-sm uppercase font-bold text-ink/60 dark:text-white/50 mt-1">GE Vernova &middot; Bangalore</span>
+                <span class="font-mono text-sm uppercase tracking-tighter text-ink/50 dark:text-white/40">Jun 2025 — Present</span>
+                <h3 class="text-4xl md:text-5xl mt-2 transition-colors duration-300 group-hover:text-primary">Data Scientist</h3>
+                <span class="font-mono text-sm md:text-base uppercase tracking-widest font-bold text-primary mt-1.5">Manufacturing</span>
+                <span class="font-mono text-base uppercase font-bold text-ink/60 dark:text-white/50 mt-1">GE Vernova &middot; Bangalore</span>
               </div>
             </div>
           </div>
@@ -403,14 +412,14 @@
               <li class="flex gap-4"><span class="material-symbols-outlined text-primary mt-1">check_circle</span><p class="text-lg leading-relaxed text-ink/80 dark:text-white/70">Created an end-to-end real-time Kafka → Druid pipeline, scaling to 300+ control loops, powering dashboards tracking 40+ live KPIs.</p></li>
             </ul>
             <div class="mt-8 flex flex-wrap gap-2">
-              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">Python</span>
-              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">LLM / SLM</span>
-              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">RAG</span>
-              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">LangGraph</span>
-              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">Apache Druid</span>
-              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">Kafka</span>
-              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">Docker</span>
-              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">Vector DB</span>
+              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105">Python</span>
+              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105">LLM / SLM</span>
+              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105">RAG</span>
+              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105">LangGraph</span>
+              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105">Apache Druid</span>
+              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105">Kafka</span>
+              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105">Docker</span>
+              <span class="bg-ink text-white dark:bg-primary-light dark:text-ink text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105">Vector DB</span>
             </div>
           </div>
         </div>
@@ -418,12 +427,16 @@
         <!-- KPMG -->
         <div class="reveal grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           <div class="md:col-span-4 exp-trigger group" data-img="assets/gallery/hover-img-2.webp" data-company="KPMG">
-            <div class="flex items-start gap-5">
+            <div class="exp-flow-img-wrap md:hidden" data-direction="rtl" aria-hidden="true">
+              <img class="exp-flow-img exp-flow-img-2" src="assets/gallery/hover-img-2.webp" alt="" loading="lazy" decoding="async"/>
+            </div>
+            <div class="flex items-start gap-5 exp-flow-text">
               <span class="exp-num text-7xl md:text-8xl font-black text-primary leading-none transition-all duration-300 opacity-60 group-hover:opacity-100 group-hover:-translate-y-1">02</span>
               <div class="flex flex-col pt-2 transition-transform duration-300 group-hover:translate-x-1.5">
-                <span class="font-mono text-xs uppercase tracking-tighter text-ink/50 dark:text-white/40">Jan 2024 — Jun 2025</span>
-                <h3 class="text-3xl md:text-4xl mt-2 transition-colors duration-300 group-hover:text-primary">Data Scientist</h3>
-                <span class="font-mono text-sm uppercase font-bold text-ink/60 dark:text-white/50 mt-1">KPMG &middot; Bangalore</span>
+                <span class="font-mono text-sm uppercase tracking-tighter text-ink/50 dark:text-white/40">Jan 2024 — Jun 2025</span>
+                <h3 class="text-4xl md:text-5xl mt-2 transition-colors duration-300 group-hover:text-primary">Data Scientist</h3>
+                <span class="font-mono text-sm md:text-base uppercase tracking-widest font-bold text-primary mt-1.5">Consulting</span>
+                <span class="font-mono text-base uppercase font-bold text-ink/60 dark:text-white/50 mt-1">KPMG &middot; Bangalore</span>
               </div>
             </div>
           </div>
@@ -435,13 +448,13 @@
               <li class="flex gap-4"><span class="material-symbols-outlined text-primary mt-1">check_circle</span><p class="text-lg leading-relaxed text-ink/80 dark:text-white/70">Optimized inventory parameters using Monte Carlo Simulation, hitting target service levels and cutting cost by $500k–$750k.</p></li>
             </ul>
             <div class="mt-8 flex flex-wrap gap-2">
-              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">Python</span>
-              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">SQL</span>
-              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">LLM / RAG</span>
-              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">Optimization</span>
-              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">FastAPI</span>
-              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">Azure ML</span>
-              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full">Chroma</span>
+              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105">Python</span>
+              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105">SQL</span>
+              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105">LLM / RAG</span>
+              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105">Optimization</span>
+              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105">FastAPI</span>
+              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105">Azure ML</span>
+              <span class="border border-ink/30 dark:border-white/30 text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105">Chroma</span>
             </div>
             <p class="mt-8 text-sm italic text-ink/60 dark:text-white/50 leading-relaxed border-l-2 border-primary/40 pl-4">
               Earlier at KPMG — <strong>Data Scientist Trainee</strong> (Feb 2023 – May 2023): completed training in Python, SQL, ML, FastAPI, GenAI &amp; Power Apps; achieved 92% accuracy in KPMG's internal ML hackathon; built a Power Apps prototype for leadership automating 5+ dashboard workflows.
@@ -452,12 +465,16 @@
         <!-- Tweek Labs -->
         <div class="reveal grid grid-cols-1 md:grid-cols-12 gap-8 items-start opacity-95">
           <div class="md:col-span-4 exp-trigger group" data-img="assets/gallery/hover-img-3.webp" data-company="Tweek Labs">
-            <div class="flex items-start gap-5">
+            <div class="exp-flow-img-wrap md:hidden" data-direction="ltr" aria-hidden="true">
+              <img class="exp-flow-img exp-flow-img-3" src="assets/gallery/hover-img-3.webp" alt="" loading="lazy" decoding="async"/>
+            </div>
+            <div class="flex items-start gap-5 exp-flow-text">
               <span class="exp-num text-7xl md:text-8xl font-black text-primary leading-none transition-all duration-300 opacity-60 group-hover:opacity-100 group-hover:-translate-y-1">03</span>
               <div class="flex flex-col pt-2 transition-transform duration-300 group-hover:translate-x-1.5">
-                <span class="font-mono text-xs uppercase tracking-tighter text-ink/50 dark:text-white/40">Mar 2022 — Aug 2022</span>
-                <h3 class="text-3xl md:text-4xl mt-2 transition-colors duration-300 group-hover:text-primary">Data Science Intern</h3>
-                <span class="font-mono text-sm uppercase font-bold text-ink/60 dark:text-white/50 mt-1">Tweek Labs &middot; Bangalore</span>
+                <span class="font-mono text-sm uppercase tracking-tighter text-ink/50 dark:text-white/40">Mar 2022 — Aug 2022</span>
+                <h3 class="text-4xl md:text-5xl mt-2 transition-colors duration-300 group-hover:text-primary">Data Science Intern</h3>
+                <span class="font-mono text-sm md:text-base uppercase tracking-widest font-bold text-primary mt-1.5">Sports</span>
+                <span class="font-mono text-base uppercase font-bold text-ink/60 dark:text-white/50 mt-1">Tweek Labs &middot; Bangalore</span>
               </div>
             </div>
           </div>
@@ -468,10 +485,10 @@
               <li class="flex gap-4"><span class="material-symbols-outlined text-primary mt-1">check_circle</span><p class="text-lg leading-relaxed text-ink/80 dark:text-white/70">Applied KNN and a stacked model to predict ground contact with average accuracy of 11ms for precise leg parameters.</p></li>
             </ul>
             <div class="mt-8 flex flex-wrap gap-2">
-              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full border border-ink/10 dark:border-white/10">Python</span>
-              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full border border-ink/10 dark:border-white/10">Meta Base</span>
-              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full border border-ink/10 dark:border-white/10">Google Sheets API</span>
-              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full border border-ink/10 dark:border-white/10">Machine Learning</span>
+              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105 border border-ink/10 dark:border-white/10">Python</span>
+              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105 border border-ink/10 dark:border-white/10">Meta Base</span>
+              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105 border border-ink/10 dark:border-white/10">Google Sheets API</span>
+              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105 border border-ink/10 dark:border-white/10">Machine Learning</span>
             </div>
           </div>
         </div>
@@ -479,12 +496,16 @@
         <!-- Ericsson -->
         <div class="reveal grid grid-cols-1 md:grid-cols-12 gap-8 items-start opacity-90">
           <div class="md:col-span-4 exp-trigger group" data-img="assets/gallery/hover-img-4.webp" data-company="Ericsson">
-            <div class="flex items-start gap-5">
+            <div class="exp-flow-img-wrap md:hidden" data-direction="rtl" aria-hidden="true">
+              <img class="exp-flow-img exp-flow-img-4" src="assets/gallery/hover-img-4.webp" alt="" loading="lazy" decoding="async"/>
+            </div>
+            <div class="flex items-start gap-5 exp-flow-text">
               <span class="exp-num text-7xl md:text-8xl font-black text-primary leading-none transition-all duration-300 opacity-60 group-hover:opacity-100 group-hover:-translate-y-1">04</span>
               <div class="flex flex-col pt-2 transition-transform duration-300 group-hover:translate-x-1.5">
-                <span class="font-mono text-xs uppercase tracking-tighter text-ink/50 dark:text-white/40">Sep 2021 — Oct 2021</span>
-                <h3 class="text-3xl md:text-4xl mt-2 transition-colors duration-300 group-hover:text-primary">Summer Intern</h3>
-                <span class="font-mono text-sm uppercase font-bold text-ink/60 dark:text-white/50 mt-1">Ericsson &middot; Remote</span>
+                <span class="font-mono text-sm uppercase tracking-tighter text-ink/50 dark:text-white/40">Sep 2021 — Oct 2021</span>
+                <h3 class="text-4xl md:text-5xl mt-2 transition-colors duration-300 group-hover:text-primary">Summer Intern</h3>
+                <span class="font-mono text-sm md:text-base uppercase tracking-widest font-bold text-primary mt-1.5">Telecom</span>
+                <span class="font-mono text-base uppercase font-bold text-ink/60 dark:text-white/50 mt-1">Ericsson &middot; Remote</span>
               </div>
             </div>
           </div>
@@ -494,9 +515,9 @@
               <li class="flex gap-4"><span class="material-symbols-outlined text-primary mt-1">check_circle</span><p class="text-lg leading-relaxed text-ink/80 dark:text-white/70">Wrote a generalized parser for XML log files, producing clean JSON for Elasticsearch using Python and Beautiful Soup.</p></li>
             </ul>
             <div class="mt-8 flex flex-wrap gap-2">
-              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full border border-ink/10 dark:border-white/10">Python</span>
-              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full border border-ink/10 dark:border-white/10">Beautiful Soup</span>
-              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full border border-ink/10 dark:border-white/10">VS Code</span>
+              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105 border border-ink/10 dark:border-white/10">Python</span>
+              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105 border border-ink/10 dark:border-white/10">Beautiful Soup</span>
+              <span class="bg-paper dark:bg-charcoal text-[10px] font-mono px-3 py-1.5 uppercase rounded-full transition-transform duration-200 hover:scale-105 border border-ink/10 dark:border-white/10">VS Code</span>
             </div>
           </div>
         </div>
@@ -530,9 +551,9 @@
         </p>
       </div>
 
-      <div class="reveal grid grid-cols-1 lg:grid-cols-5 gap-0 bg-paper-dim dark:bg-charcoal-2 rounded-3xl overflow-hidden border border-ink/5 dark:border-white/10 shadow-sm">
+      <div class="reveal group grid grid-cols-1 lg:grid-cols-5 gap-0 bg-paper-dim dark:bg-charcoal-2 rounded-3xl overflow-hidden border border-ink/5 dark:border-white/10 shadow-sm hover:shadow-2xl transition-shadow duration-300">
         <div class="lg:col-span-2 relative min-h-[280px] flex items-center justify-center bg-ink overflow-hidden">
-          <img src="assets/gallery/milestone-ai.webp" alt="Milestone.ai project screenshot" class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async"/>
+          <img src="assets/gallery/milestone-ai.webp" alt="Milestone.ai project screenshot" class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async"/>
           <div class="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/0 to-ink/0"></div>
         </div>
         <div class="lg:col-span-3 p-8 md:p-12">
@@ -575,23 +596,23 @@
       <div class="reveal-stagger grid grid-cols-1 lg:grid-cols-3 gap-0 border-y border-ink/10 dark:border-white/10 divide-y lg:divide-y-0 lg:divide-x divide-ink/10 dark:divide-white/10 bg-paper dark:bg-ink/40 rounded-2xl overflow-hidden">
 
         <!-- Languages & Frameworks -->
-        <div class="p-8 md:p-10">
+        <div class="p-8 md:p-10 transition-colors duration-300 hover:bg-paper-dim dark:hover:bg-charcoal-2">
           <div class="flex items-center justify-between mb-10">
             <h3 class="text-xl md:text-2xl font-display font-black uppercase tracking-tight">Languages &amp; Frameworks</h3>
             <span class="material-symbols-outlined text-primary">terminal</span>
           </div>
           <div class="space-y-5">
-            <div><div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1.5"><span>Python</span><span>96%</span></div><div class="h-1.5 rounded-full bg-ink/10 dark:bg-white/10"><div class="h-full rounded-full bg-primary" style="width:96%"></div></div></div>
-            <div><div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1.5"><span>SQL</span><span>93%</span></div><div class="h-1.5 rounded-full bg-ink/10 dark:bg-white/10"><div class="h-full rounded-full bg-primary" style="width:93%"></div></div></div>
-            <div><div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1.5"><span>FastAPI / Flask</span><span>88%</span></div><div class="h-1.5 rounded-full bg-ink/10 dark:bg-white/10"><div class="h-full rounded-full bg-primary" style="width:88%"></div></div></div>
-            <div><div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1.5"><span>LangChain / LangGraph</span><span>85%</span></div><div class="h-1.5 rounded-full bg-ink/10 dark:bg-white/10"><div class="h-full rounded-full bg-primary" style="width:85%"></div></div></div>
-            <div><div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1.5"><span>PyTorch / scikit-learn</span><span>82%</span></div><div class="h-1.5 rounded-full bg-ink/10 dark:bg-white/10"><div class="h-full rounded-full bg-primary" style="width:82%"></div></div></div>
-            <div><div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1.5"><span>PySpark</span><span>90%</span></div><div class="h-1.5 rounded-full bg-ink/10 dark:bg-white/10"><div class="h-full rounded-full bg-primary" style="width:90%"></div></div></div>
+            <div><div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1.5"><span>Python</span><span>96%</span></div><div class="h-1.5 rounded-full bg-ink/10 dark:bg-white/10"><div class="h-full rounded-full bg-primary skill-bar-fill" style="width:0%" data-width="96"></div></div></div>
+            <div><div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1.5"><span>SQL</span><span>93%</span></div><div class="h-1.5 rounded-full bg-ink/10 dark:bg-white/10"><div class="h-full rounded-full bg-primary skill-bar-fill" style="width:0%" data-width="93"></div></div></div>
+            <div><div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1.5"><span>FastAPI / Flask</span><span>88%</span></div><div class="h-1.5 rounded-full bg-ink/10 dark:bg-white/10"><div class="h-full rounded-full bg-primary skill-bar-fill" style="width:0%" data-width="88"></div></div></div>
+            <div><div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1.5"><span>LangChain / LangGraph</span><span>85%</span></div><div class="h-1.5 rounded-full bg-ink/10 dark:bg-white/10"><div class="h-full rounded-full bg-primary skill-bar-fill" style="width:0%" data-width="85"></div></div></div>
+            <div><div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1.5"><span>PyTorch / scikit-learn</span><span>82%</span></div><div class="h-1.5 rounded-full bg-ink/10 dark:bg-white/10"><div class="h-full rounded-full bg-primary skill-bar-fill" style="width:0%" data-width="82"></div></div></div>
+            <div><div class="flex justify-between text-xs font-bold uppercase tracking-widest mb-1.5"><span>PySpark</span><span>90%</span></div><div class="h-1.5 rounded-full bg-ink/10 dark:bg-white/10"><div class="h-full rounded-full bg-primary skill-bar-fill" style="width:0%" data-width="90"></div></div></div>
           </div>
         </div>
 
         <!-- Machine Learning -->
-        <div class="p-8 md:p-10">
+        <div class="p-8 md:p-10 transition-colors duration-300 hover:bg-paper-dim dark:hover:bg-charcoal-2">
           <div class="flex items-center justify-between mb-10">
             <h3 class="text-xl md:text-2xl font-display font-black uppercase tracking-tight">Machine Learning</h3>
             <span class="material-symbols-outlined text-primary">psychology</span>
@@ -601,7 +622,7 @@
               <div class="relative size-20 radial-progress">
                 <svg class="size-full -rotate-90" viewbox="0 0 100 100">
                   <circle class="text-ink/10 dark:text-white/10 stroke-current" cx="50" cy="50" fill="transparent" r="42" stroke-width="6"/>
-                  <circle class="value-circle text-primary stroke-current" data-pct="95" cx="50" cy="50" fill="transparent" r="42" stroke-linecap="round" stroke-width="6"/>
+                  <circle class="value-circle text-primary stroke-current" data-pct="95" cx="50" cy="50" fill="transparent" r="42" stroke-linecap="round" stroke-width="6" stroke-dasharray="263.9" stroke-dashoffset="263.9"/>
                 </svg>
                 <div class="absolute inset-0 flex items-center justify-center font-display text-lg font-black">95</div>
               </div>
@@ -611,7 +632,7 @@
               <div class="relative size-20 radial-progress">
                 <svg class="size-full -rotate-90" viewbox="0 0 100 100">
                   <circle class="text-ink/10 dark:text-white/10 stroke-current" cx="50" cy="50" fill="transparent" r="42" stroke-width="6"/>
-                  <circle class="value-circle text-primary stroke-current" data-pct="88" cx="50" cy="50" fill="transparent" r="42" stroke-linecap="round" stroke-width="6"/>
+                  <circle class="value-circle text-primary stroke-current" data-pct="88" cx="50" cy="50" fill="transparent" r="42" stroke-linecap="round" stroke-width="6" stroke-dasharray="263.9" stroke-dashoffset="263.9"/>
                 </svg>
                 <div class="absolute inset-0 flex items-center justify-center font-display text-lg font-black">88</div>
               </div>
@@ -621,7 +642,7 @@
               <div class="relative size-20 radial-progress">
                 <svg class="size-full -rotate-90" viewbox="0 0 100 100">
                   <circle class="text-ink/10 dark:text-white/10 stroke-current" cx="50" cy="50" fill="transparent" r="42" stroke-width="6"/>
-                  <circle class="value-circle text-primary stroke-current" data-pct="80" cx="50" cy="50" fill="transparent" r="42" stroke-linecap="round" stroke-width="6"/>
+                  <circle class="value-circle text-primary stroke-current" data-pct="80" cx="50" cy="50" fill="transparent" r="42" stroke-linecap="round" stroke-width="6" stroke-dasharray="263.9" stroke-dashoffset="263.9"/>
                 </svg>
                 <div class="absolute inset-0 flex items-center justify-center font-display text-lg font-black">80</div>
               </div>
@@ -631,7 +652,7 @@
               <div class="relative size-20 radial-progress">
                 <svg class="size-full -rotate-90" viewbox="0 0 100 100">
                   <circle class="text-ink/10 dark:text-white/10 stroke-current" cx="50" cy="50" fill="transparent" r="42" stroke-width="6"/>
-                  <circle class="value-circle text-primary stroke-current" data-pct="90" cx="50" cy="50" fill="transparent" r="42" stroke-linecap="round" stroke-width="6"/>
+                  <circle class="value-circle text-primary stroke-current" data-pct="90" cx="50" cy="50" fill="transparent" r="42" stroke-linecap="round" stroke-width="6" stroke-dasharray="263.9" stroke-dashoffset="263.9"/>
                 </svg>
                 <div class="absolute inset-0 flex items-center justify-center font-display text-lg font-black">90</div>
               </div>
@@ -641,7 +662,7 @@
         </div>
 
         <!-- Tools & Technologies -->
-        <div class="p-8 md:p-10">
+        <div class="p-8 md:p-10 transition-colors duration-300 hover:bg-paper-dim dark:hover:bg-charcoal-2">
           <div class="flex items-center justify-between mb-10">
             <h3 class="text-xl md:text-2xl font-display font-black uppercase tracking-tight">Tools &amp; Technologies</h3>
             <span class="material-symbols-outlined text-primary">database</span>
@@ -683,52 +704,83 @@
         </p>
       </div>
 
-      <!-- 6-col grid on desktop/laptop: row 1 = three equal cards (2 cols each),
-           row 2 = Technical Mentoring (4 cols, bigger) + Dashboarding & Analytics (2 cols, smaller) -->
+      <!--
+        6-col grid on desktop/laptop: row 1 = three equal cards (2 cols each),
+        row 2 = Dashboarding & Analytics + Technical Mentoring, 50/50 (3 cols each).
+
+        On mobile (below md) every card becomes a tap-to-expand accordion:
+        .service-card-header is the always-visible icon+title row (with a
+        chevron that flips on open), .service-card-body is the collapsed
+        description, toggled via the .is-open class in script.js. At md+
+        the CSS below simply forces the body open and hides the chevron,
+        so desktop looks exactly like a normal static card grid.
+      -->
       <div class="reveal-stagger grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
-        <div class="lg:col-span-2 p-8 bg-paper-dim dark:bg-charcoal-2 border border-ink/5 dark:border-white/10 rounded-3xl hover:shadow-xl transition-all">
-          <div class="size-12 rounded-full bg-primary/15 flex items-center justify-center mb-8">
-            <span class="material-symbols-outlined text-primary">smart_toy</span>
+        <div class="service-card lg:col-span-2 p-5 md:p-8 bg-paper-dim dark:bg-charcoal-2 border border-ink/5 dark:border-white/10 rounded-3xl hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
+          <button type="button" class="service-card-header w-full flex items-center gap-3 md:gap-0 md:block text-left">
+            <div class="size-9 md:size-12 rounded-full bg-primary/15 flex items-center justify-center shrink-0 md:mb-8">
+              <span class="material-symbols-outlined text-primary">smart_toy</span>
+            </div>
+            <h3 class="flex-1 text-sm md:text-2xl font-black uppercase md:mb-3">LLM &amp; RAG Systems</h3>
+            <span class="service-card-chevron material-symbols-outlined text-ink/40 dark:text-white/30 md:hidden">expand_more</span>
+          </button>
+          <div class="service-card-body">
+            <p class="text-ink/60 dark:text-white/50 text-sm leading-relaxed">Designing retrieval-augmented generation pipelines, agentic workflows and fine-tuned SLMs that ship to production.</p>
           </div>
-          <h3 class="text-2xl font-black mb-3 uppercase">LLM &amp; RAG Systems</h3>
-          <p class="text-ink/60 dark:text-white/50 text-sm leading-relaxed">Designing retrieval-augmented generation pipelines, agentic workflows and fine-tuned SLMs that ship to production.</p>
         </div>
-        <div class="lg:col-span-2 p-8 bg-paper-dim dark:bg-charcoal-2 border border-ink/5 dark:border-white/10 rounded-3xl hover:shadow-xl transition-all">
-          <div class="size-12 rounded-full bg-primary/15 flex items-center justify-center mb-8">
-            <span class="material-symbols-outlined text-primary">hub</span>
+        <div class="service-card lg:col-span-2 p-5 md:p-8 bg-paper-dim dark:bg-charcoal-2 border border-ink/5 dark:border-white/10 rounded-3xl hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
+          <button type="button" class="service-card-header w-full flex items-center gap-3 md:gap-0 md:block text-left">
+            <div class="size-9 md:size-12 rounded-full bg-primary/15 flex items-center justify-center shrink-0 md:mb-8">
+              <span class="material-symbols-outlined text-primary">hub</span>
+            </div>
+            <h3 class="flex-1 text-sm md:text-xl font-black uppercase md:mb-3">ML Pipeline Engineering</h3>
+            <span class="service-card-chevron material-symbols-outlined text-ink/40 dark:text-white/30 md:hidden">expand_more</span>
+          </button>
+          <div class="service-card-body">
+            <p class="text-ink/60 dark:text-white/50 text-sm leading-relaxed">Building reliable, scalable machine learning pipelines from raw data to deployed model.</p>
           </div>
-          <h3 class="text-xl font-black mb-3 uppercase">ML Pipeline Engineering</h3>
-          <p class="text-ink/60 dark:text-white/50 text-sm leading-relaxed">Building reliable, scalable machine learning pipelines from raw data to deployed model.</p>
         </div>
-        <div class="lg:col-span-2 p-8 bg-paper-dim dark:bg-charcoal-2 border border-ink/5 dark:border-white/10 rounded-3xl hover:shadow-xl transition-all">
-          <div class="size-12 rounded-full bg-primary/15 flex items-center justify-center mb-8">
-            <span class="material-symbols-outlined text-primary">timeline</span>
+        <div class="service-card lg:col-span-2 p-5 md:p-8 bg-paper-dim dark:bg-charcoal-2 border border-ink/5 dark:border-white/10 rounded-3xl hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
+          <button type="button" class="service-card-header w-full flex items-center gap-3 md:gap-0 md:block text-left">
+            <div class="size-9 md:size-12 rounded-full bg-primary/15 flex items-center justify-center shrink-0 md:mb-8">
+              <span class="material-symbols-outlined text-primary">timeline</span>
+            </div>
+            <h3 class="flex-1 text-sm md:text-xl font-black uppercase md:mb-3">Data Analysis &amp; Forecasting</h3>
+            <span class="service-card-chevron material-symbols-outlined text-ink/40 dark:text-white/30 md:hidden">expand_more</span>
+          </button>
+          <div class="service-card-body">
+            <p class="text-ink/60 dark:text-white/50 text-sm leading-relaxed">Time-series forecasting, statistical modelling and optimization to inform real business decisions.</p>
           </div>
-          <h3 class="text-xl font-black mb-3 uppercase">Data Analysis &amp; Forecasting</h3>
-          <p class="text-ink/60 dark:text-white/50 text-sm leading-relaxed">Time-series forecasting, statistical modelling and optimization to inform real business decisions.</p>
         </div>
-        <div class="lg:col-span-4 p-8 bg-paper-dim dark:bg-charcoal-2 border border-ink/5 dark:border-white/10 rounded-3xl hover:shadow-xl transition-all flex flex-col md:flex-row items-start md:items-center gap-6">
-          <div class="size-14 rounded-full bg-primary/15 flex items-center justify-center shrink-0">
-            <span class="material-symbols-outlined text-primary text-2xl">school</span>
+        <div class="service-card lg:col-span-3 p-5 md:p-8 bg-paper-dim dark:bg-charcoal-2 border border-ink/5 dark:border-white/10 rounded-3xl hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
+          <button type="button" class="service-card-header w-full flex items-center gap-3 md:gap-0 md:block text-left">
+            <div class="size-9 md:size-12 rounded-full bg-primary/15 flex items-center justify-center shrink-0 md:mb-8">
+              <span class="material-symbols-outlined text-primary">dashboard_customize</span>
+            </div>
+            <h3 class="flex-1 text-sm md:text-xl font-black uppercase md:mb-3">Dashboarding &amp; Analytics</h3>
+            <span class="service-card-chevron material-symbols-outlined text-ink/40 dark:text-white/30 md:hidden">expand_more</span>
+          </button>
+          <div class="service-card-body">
+            <p class="text-ink/60 dark:text-white/50 text-sm leading-relaxed">Interactive dashboards with Streamlit and Tableau that turn complex data into clear, actionable narratives.</p>
           </div>
-          <div class="flex-1">
-            <h3 class="text-2xl md:text-3xl font-black mb-2 uppercase">Technical Mentoring</h3>
-            <p class="text-ink/60 dark:text-white/50 text-base leading-relaxed mb-5">1:1 and cohort mentoring on data science fundamentals, interview prep and ML career paths — 200+ students mentored to date.</p>
+        </div>
+        <!-- Pinned open on mobile: a static card, not a collapsible accordion
+             like the other four (it's the featured/primary offer with a CTA). -->
+        <div class="service-card service-card--pinned-open lg:col-span-3 p-5 md:p-8 bg-primary text-white rounded-3xl relative overflow-hidden hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
+          <div class="absolute -top-10 -right-10 size-40 bg-white/10 rounded-full blur-3xl"></div>
+          <div class="service-card-header relative z-10 w-full flex items-center gap-3 md:gap-0 md:block">
+            <div class="size-10 md:size-14 rounded-full bg-white/20 flex items-center justify-center shrink-0 md:mb-8">
+              <span class="material-symbols-outlined text-2xl">school</span>
+            </div>
+            <h3 class="flex-1 text-base md:text-2xl font-black uppercase md:mb-3">Technical Mentoring</h3>
+          </div>
+          <div class="service-card-body relative z-10">
+            <p class="text-white/85 text-base leading-relaxed mb-5">1:1 and cohort mentoring on data science fundamentals, interview prep and ML career paths — 200+ students mentored to date.</p>
             <!-- Best-guess Topmate handle — verify/update the real profile URL before publishing. -->
-            <a href="https://topmate.io/soumyadipghorai" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-ink text-white dark:bg-primary-light dark:text-ink px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">
+            <a href="https://topmate.io/soumyadipghorai" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-ink text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-ink transition-colors">
               Book a Session
               <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
             </a>
-          </div>
-        </div>
-        <div class="lg:col-span-2 p-8 bg-primary text-white rounded-3xl relative overflow-hidden hover:shadow-xl transition-all">
-          <div class="absolute -top-10 -right-10 size-40 bg-white/10 rounded-full blur-3xl"></div>
-          <div class="relative z-10">
-            <div class="size-12 rounded-full bg-white/20 flex items-center justify-center mb-8">
-              <span class="material-symbols-outlined">dashboard_customize</span>
-            </div>
-            <h3 class="text-xl font-black mb-3 uppercase">Dashboarding &amp; Analytics</h3>
-            <p class="text-white/85 text-sm leading-relaxed">Interactive dashboards with Streamlit and Tableau that turn complex data into clear, actionable narratives.</p>
           </div>
         </div>
       </div>
@@ -755,7 +807,7 @@
         </div>
       </div>
 
-      <div class="reveal-stagger grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+      <div class="reveal-stagger grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="p-8 bg-charcoal-2 rounded-2xl border border-white/10">
           <span class="material-symbols-outlined text-primary-light text-3xl mb-4 block">groups</span>
           <p class="text-lg font-medium leading-relaxed mb-3">Mentored 200+ students in data science fundamentals, interview prep and applied ML.</p>
@@ -769,14 +821,8 @@
           <p class="text-lg font-medium leading-relaxed mb-3">Featured speaker at the GE Vernova Users Conference 2026, presenting real-time AI systems in production.</p>
         </div>
       </div>
-
-      <!-- NOTE: No real client/manager testimonials exist yet — the card below is a
-           clearly-labeled placeholder. Replace with genuine feedback once collected. -->
-      <!-- <div class="reveal max-w-2xl mx-auto p-8 md:p-10 bg-charcoal-2 rounded-2xl border border-dashed border-white/20 text-center">
-        <span class="material-symbols-outlined text-primary-light text-3xl mb-4 block mx-auto">format_quote</span>
-        <p class="text-white/70 italic leading-relaxed mb-6">"Quote pending — replace with real feedback once collected."</p>
-        <p class="text-sm font-bold uppercase tracking-widest text-white/50">Manager, GE Vernova <span class="text-primary-light">(placeholder byline)</span></p>
-      </div> -->
+      <!-- No real client/manager testimonials exist yet, so this section intentionally
+           stops at the highlight cards above rather than showing a placeholder quote. -->
     </div>
   </section>
 

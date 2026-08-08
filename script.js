@@ -40,9 +40,13 @@
   applyTheme(currentTheme);
 
   /* ---------------- Preloader ----------------
-     Hidden once the page's critical resources (hero image, fonts) have
-     loaded via window.load, with a hard-cap timeout so a slow/broken
-     asset can never leave it stuck on screen. */
+     Hidden only once every <img> on the page (including lazy-loaded
+     gallery/hover photos) has actually finished loading — not just
+     window.load, which doesn't wait for loading="lazy" images. We
+     temporarily force those to load eagerly so the preloader's wait is
+     real, then leave loading="lazy" in place for anyone with JS off.
+     A hard-cap timeout guarantees it can never get stuck open if a
+     single image stalls or 404s. */
   (function () {
     var preloader = document.getElementById("preloader");
     if (!preloader) return;
@@ -55,8 +59,27 @@
         if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
       }, 600);
     }
-    window.addEventListener("load", hidePreloader);
-    window.setTimeout(hidePreloader, 3500); // hard cap
+
+    function whenAllImagesLoaded() {
+      var imgs = Array.prototype.slice.call(document.images);
+      if (!imgs.length) return Promise.resolve();
+      imgs.forEach(function (img) {
+        if (img.loading === "lazy") img.loading = "eager";
+      });
+      var pending = imgs.map(function (img) {
+        if (img.complete) return Promise.resolve();
+        return new Promise(function (resolve) {
+          img.addEventListener("load", resolve, { once: true });
+          img.addEventListener("error", resolve, { once: true });
+        });
+      });
+      return Promise.all(pending);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      whenAllImagesLoaded().then(hidePreloader);
+    });
+    window.setTimeout(hidePreloader, 6000); // hard cap
   })();
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -225,6 +248,25 @@
       radials.forEach(function (el) { radialObserver.observe(el); });
     }
 
+    /* ---------------- Skill linear-bar fill on view ---------------- */
+    var skillBars = document.querySelectorAll(".skill-bar-fill[data-width]");
+    if ("IntersectionObserver" in window && skillBars.length) {
+      var skillBarObserver = new IntersectionObserver(
+        function (entries, obs) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.style.width = entry.target.getAttribute("data-width") + "%";
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.4 }
+      );
+      skillBars.forEach(function (el) { skillBarObserver.observe(el); });
+    } else {
+      skillBars.forEach(function (el) { el.style.width = el.getAttribute("data-width") + "%"; });
+    }
+
     /* ---------------- Sticky header shadow on scroll ---------------- */
     var header = document.getElementById("site-header");
     function onScroll() {
@@ -244,49 +286,123 @@
        timeline, swapping its gradient/icon/label per entry and
        fading + scaling in on enter, out on leave. */
     (function () {
-      if (!window.matchMedia || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
       var triggers = Array.prototype.slice.call(document.querySelectorAll(".exp-trigger"));
-      var card = document.getElementById("exp-hover-card");
-      var cardImg = document.getElementById("exp-hover-card-img");
-      var cardLabel = document.getElementById("exp-hover-card-label");
-      if (!triggers.length || !card || !cardImg || !cardLabel) return;
+      if (!triggers.length) return;
+      var canHoverFine = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-      var OFFSET_X = 34, OFFSET_Y = -70; // card sits up and to the right of the cursor
-      var mouseX = 0, mouseY = 0, curX = 0, curY = 0, active = false, primed = false;
+      if (canHoverFine) {
+        var card = document.getElementById("exp-hover-card");
+        var cardImg = document.getElementById("exp-hover-card-img");
+        var cardLabel = document.getElementById("exp-hover-card-label");
+        if (!card || !cardImg || !cardLabel) return;
 
-      function render() {
-        curX += (mouseX - curX) * 0.16;
-        curY += (mouseY - curY) * 0.16;
-        var scale = active ? 1 : 0.85;
-        var rotate = active ? -2 : -5;
-        card.style.transform =
-          "translate(" + (curX + OFFSET_X) + "px, " + (curY + OFFSET_Y) + "px) " +
-          "translate(-50%, -50%) scale(" + scale + ") rotate(" + rotate + "deg)";
+        var OFFSET_X = 38, OFFSET_Y = -78; // card sits up and to the right of the cursor
+        var mouseX = 0, mouseY = 0, curX = 0, curY = 0, active = false, primed = false;
+
+        function render() {
+          curX += (mouseX - curX) * 0.16;
+          curY += (mouseY - curY) * 0.16;
+          var scale = active ? 1 : 0.85;
+          var rotate = active ? -2 : -5;
+          card.style.transform =
+            "translate(" + (curX + OFFSET_X) + "px, " + (curY + OFFSET_Y) + "px) " +
+            "translate(-50%, -50%) scale(" + scale + ") rotate(" + rotate + "deg)";
+          window.requestAnimationFrame(render);
+        }
         window.requestAnimationFrame(render);
-      }
-      window.requestAnimationFrame(render);
 
-      triggers.forEach(function (trigger) {
-        trigger.addEventListener("mouseenter", function (e) {
-          mouseX = e.clientX;
-          mouseY = e.clientY;
-          if (!primed) { curX = mouseX; curY = mouseY; primed = true; }
-          active = true;
-          card.classList.add("is-visible");
-          var imgSrc = trigger.getAttribute("data-img");
-          if (imgSrc && cardImg.getAttribute("src") !== imgSrc) cardImg.src = imgSrc;
-          cardLabel.textContent = trigger.getAttribute("data-company") || "";
+        triggers.forEach(function (trigger) {
+          trigger.addEventListener("mouseenter", function (e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            if (!primed) { curX = mouseX; curY = mouseY; primed = true; }
+            active = true;
+            card.classList.add("is-visible");
+            var imgSrc = trigger.getAttribute("data-img");
+            if (imgSrc && cardImg.getAttribute("src") !== imgSrc) cardImg.src = imgSrc;
+            cardLabel.textContent = trigger.getAttribute("data-company") || "";
+          });
+          trigger.addEventListener("mousemove", function (e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+          });
+          trigger.addEventListener("mouseleave", function () {
+            active = false;
+            card.classList.remove("is-visible");
+          });
         });
-        trigger.addEventListener("mousemove", function (e) {
-          mouseX = e.clientX;
-          mouseY = e.clientY;
-        });
-        trigger.addEventListener("mouseleave", function () {
-          active = false;
-          card.classList.remove("is-visible");
-        });
-      });
+      }
+      // Touch/coarse-pointer devices get each entry's own flow-through
+      // photo instead (see the .exp-flow-img block below) — nothing to
+      // wire up here.
     })();
+
+    /* ---------------- Experience flow-through photo (mobile only) ----------------
+       Each entry's own photo (above its own text, see CSS) sweeps across
+       purely as a function of THAT entry's own scroll position — off-screen
+       on one side when the entry is about to enter the viewport, covering
+       and revealing the text as it crosses, off-screen the other side as
+       it leaves. Direction alternates per entry (1st left→right, 2nd
+       right→left, ...) via each .exp-flow-img-wrap's data-direction, and
+       progress is mapped 1:1 to scroll distance across the entry's full
+       transit through the viewport. Driven continuously by scroll (no
+       click/tap), reusing the same data-img attribute the
+       desktop hover card already reads off each .exp-trigger — no
+       duplicated content. */
+    (function () {
+      var wraps = Array.prototype.slice.call(document.querySelectorAll(".exp-flow-img-wrap"));
+      var reduceMotionExp = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!wraps.length || reduceMotionExp) return;
+      var items = wraps.map(function (wrap) {
+        return {
+          el: wrap.parentElement,
+          img: wrap.querySelector("img"),
+          sign: wrap.getAttribute("data-direction") === "rtl" ? -1 : 1
+        };
+      }).filter(function (it) { return it.el && it.img; });
+      if (!items.length) return;
+
+      var ticking = false;
+      function update() {
+        ticking = false;
+        var vh = window.innerHeight;
+        items.forEach(function (it) {
+          var rect = it.el.getBoundingClientRect();
+          if (rect.bottom < -100 || rect.top > vh + 100) return; // skip offscreen work
+          // progress: 0 when the entry is just entering from the bottom of
+          // the viewport, 1 when it has fully exited the top — mapped 1:1
+          // to scroll distance (no artificial speed-up).
+          var progress = (vh - rect.top) / (vh + rect.height);
+          progress = Math.max(0, Math.min(1, progress));
+          var pct = (progress * 2 - 1) * 160 * it.sign; // -160%..+160% of the image's own width
+          it.img.style.transform = "translateX(" + pct.toFixed(1) + "%)";
+        });
+      }
+      function requestUpdate() {
+        if (!ticking) {
+          ticking = true;
+          window.requestAnimationFrame(update);
+        }
+      }
+      window.addEventListener("scroll", requestUpdate, { passive: true });
+      window.addEventListener("resize", requestUpdate);
+      update();
+    })();
+
+    /* ---------------- Services accordion (mobile only via CSS) ----------------
+       The header is a real <button>, so this works regardless of viewport;
+       the CSS above is what actually restricts the collapse/expand visuals
+       to screens under md — at md+ the body is always shown and the
+       chevron is hidden, so this JS is a no-op there beyond toggling an
+       unused class. */
+    var serviceCards = Array.prototype.slice.call(document.querySelectorAll(".service-card:not(.service-card--pinned-open)"));
+    serviceCards.forEach(function (card) {
+      var header = card.querySelector(".service-card-header");
+      if (!header) return;
+      header.addEventListener("click", function () {
+        card.classList.toggle("is-open");
+      });
+    });
 
     /* ---------------- Gallery parallax ----------------
        Each .parallax-img is 130% the height of its cropped frame; on scroll

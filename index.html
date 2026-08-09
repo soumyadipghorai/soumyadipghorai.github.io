@@ -836,73 +836,56 @@
         <div class="h-px bg-ink/10 dark:bg-white/10 flex-1"></div>
         <span class="hidden md:block text-[10px] font-black uppercase tracking-[0.4em] text-ink/30 dark:text-white/30">Off Duty</span>
       </div>
-      <p class="reveal text-ink/60 dark:text-white/50 max-w-xl text-lg font-light leading-relaxed mb-16">
-        Life outside the notebooks — trips, friends, and the odd stray moment. Click a photo to zoom in.
+      <p class="reveal text-ink/60 dark:text-white/50 max-w-xl text-lg font-light leading-relaxed mb-10">
+        Life outside the notebooks — trips, temples, mountains and everything in between. Click a photo to zoom in.
       </p>
 
       <!--
-        Two rows, each one big tile + three small tiles, with each image
-        given subtle parallax drift on scroll (see script.js). Row 2 mirrors
-        row 1's layout (big tile swaps to the other end). Heights are fixed
-        per breakpoint so big + small tiles line up edge-to-edge exactly.
+        Category pills read straight from assets/gallery/manifest.json (see
+        script.js), which in turn is generated from the folders under
+        assets/gallery/ (architecture, durga_puja, landscape, mountain,
+        others, temples) — see scripts/generate_gallery_manifest.py and the
+        "Update gallery manifest" GitHub Action. Drop a new photo into any
+        of those folders and push: the Action regenerates the manifest and
+        it shows up here automatically, no code changes needed.
       -->
-      <div class="reveal-stagger flex flex-col gap-4 md:gap-6">
+      <!-- flex-nowrap + overflow-x-auto keeps this to a single scrollable row on
+           mobile (no-scrollbar hides the scrollbar chrome); md: restores the
+           original wrapping row on larger screens where it all fits anyway. -->
+      <div id="gallery-filters" class="reveal flex flex-nowrap overflow-x-auto no-scrollbar gap-3 mb-10 pb-1 md:flex-wrap md:overflow-visible md:pb-0">
+        <button type="button" class="gallery-filter-btn is-active" data-category="all">All</button>
+        <button type="button" class="gallery-filter-btn" data-category="architecture">Architecture</button>
+        <button type="button" class="gallery-filter-btn" data-category="durga_puja">Durga Puja</button>
+        <button type="button" class="gallery-filter-btn" data-category="landscape">Landscape</button>
+        <button type="button" class="gallery-filter-btn" data-category="mountain">Mountain</button> 
+        <button type="button" class="gallery-filter-btn" data-category="others">Others</button>
+      </div>
 
-        <!-- Row 1: big, small, small, small -->
-        <div class="flex flex-col sm:flex-row gap-4 md:gap-6 h-auto sm:h-[280px] md:h-[360px] lg:h-[420px]">
-          <div class="gallery-tile parallax-wrap flex-[2] rounded-2xl overflow-hidden border border-ink/5 dark:border-white/10 aspect-[4/3] sm:aspect-auto h-[220px] sm:h-full" data-full="assets/gallery/DSC_0152.webp" data-caption="On the road">
-            <img class="parallax-img" decoding="async" src="assets/gallery/DSC_0152.webp" alt="Travel snapshot" loading="lazy"/>
-            <div class="gallery-caption absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
-              <h4 class="text-white text-lg font-black uppercase tracking-tight">On the Road</h4>
-            </div>
-          </div>
-          <div class="gallery-tile parallax-wrap flex-1 rounded-2xl overflow-hidden border border-ink/5 dark:border-white/10 aspect-[4/3] sm:aspect-auto h-[160px] sm:h-full" data-full="assets/gallery/DSC_0982.webp" data-caption="Good company">
-            <img class="parallax-img" decoding="async" src="assets/gallery/DSC_0982.webp" alt="Friends hangout" loading="lazy"/>
-            <div class="gallery-caption absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
-              <h4 class="text-white text-sm font-black uppercase tracking-tight">Good Company</h4>
-            </div>
-          </div>
-          <div class="gallery-tile parallax-wrap flex-1 rounded-2xl overflow-hidden border border-ink/5 dark:border-white/10 aspect-[4/3] sm:aspect-auto h-[160px] sm:h-full" data-full="assets/gallery/DSC_1672.webp" data-caption="Weekend trip">
-            <img class="parallax-img" decoding="async" src="assets/gallery/DSC_1672.webp" alt="Weekend trip" loading="lazy"/>
-            <div class="gallery-caption absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
-              <h4 class="text-white text-sm font-black uppercase tracking-tight">Weekend Trip</h4>
-            </div>
-          </div>
-          <div class="gallery-tile parallax-wrap flex-1 rounded-2xl overflow-hidden border border-ink/5 dark:border-white/10 aspect-[4/3] sm:aspect-auto h-[160px] sm:h-full" data-full="assets/gallery/DSC_3515.webp" data-caption="Somewhere scenic">
-            <img class="parallax-img" decoding="async" src="assets/gallery/DSC_3515.webp" alt="Scenic moment" loading="lazy"/>
-            <div class="gallery-caption absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
-              <h4 class="text-white text-sm font-black uppercase tracking-tight">Chasing Views</h4>
-            </div>
-          </div>
-        </div>
+      <!--
+        Layered center-focused carousel: every photo in the current category
+        is its own persistent DOM element (built once from manifest.json,
+        never swapped) positioned absolutely and moved between
+        center/left/right/off-screen slots purely via CSS transform+opacity
+        when activeIndex changes — see the gallery carousel logic in
+        script.js. No parallax, no scroll-linked motion; movement is driven
+        only by the prev/next buttons, dots, keyboard, or autoplay.
+      -->
+      <div id="gallery-carousel" class="reveal gallery-carousel" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Photo gallery">
+        <div id="gallery-track" class="gallery-track" aria-live="polite"></div>
+      </div>
+      <p id="gallery-empty" class="hidden text-center text-ink/40 dark:text-white/30 py-16 font-mono text-xs uppercase tracking-widest">Loading photos…</p>
 
-        <!-- Row 2: reversed — small, small, small, big -->
-        <div class="flex flex-col sm:flex-row gap-4 md:gap-6 h-auto sm:h-[280px] md:h-[360px] lg:h-[420px]">
-          <div class="gallery-tile parallax-wrap flex-1 rounded-2xl overflow-hidden border border-ink/5 dark:border-white/10 aspect-[4/3] sm:aspect-auto h-[160px] sm:h-full" data-full="assets/gallery/DSC_4815.webp" data-caption="Off the clock">
-            <img class="parallax-img" decoding="async" src="assets/gallery/DSC_4815.webp" alt="Off the clock" loading="lazy"/>
-            <div class="gallery-caption absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
-              <h4 class="text-white text-sm font-black uppercase tracking-tight">Off the Clock</h4>
-            </div>
-          </div>
-          <div class="gallery-tile parallax-wrap flex-1 rounded-2xl overflow-hidden border border-ink/5 dark:border-white/10 aspect-[4/3] sm:aspect-auto h-[160px] sm:h-full" data-full="assets/gallery/DSC_5115.webp" data-caption="Good times">
-            <img class="parallax-img" decoding="async" src="assets/gallery/DSC_5115.webp" alt="Good times" loading="lazy"/>
-            <div class="gallery-caption absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
-              <h4 class="text-white text-sm font-black uppercase tracking-tight">Good Times</h4>
-            </div>
-          </div>
-          <div class="gallery-tile parallax-wrap flex-1 rounded-2xl overflow-hidden border border-ink/5 dark:border-white/10 aspect-[4/3] sm:aspect-auto h-[160px] sm:h-full" data-full="assets/gallery/DSC_4724.webp" data-caption="Golden hour">
-            <img class="parallax-img" decoding="async" src="assets/gallery/DSC_4724.webp" alt="Golden hour moment" loading="lazy"/>
-            <div class="gallery-caption absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
-              <h4 class="text-white text-sm font-black uppercase tracking-tight">Golden Hour</h4>
-            </div>
-          </div>
-          <div class="gallery-tile parallax-wrap flex-[2] rounded-2xl overflow-hidden border border-ink/5 dark:border-white/10 aspect-[4/3] sm:aspect-auto h-[220px] sm:h-full" data-full="assets/gallery/DSC_4628.webp" data-caption="With the crew">
-            <img class="parallax-img" decoding="async" src="assets/gallery/DSC_4628.webp" alt="With friends" loading="lazy"/>
-            <div class="gallery-caption absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
-              <h4 class="text-white text-lg font-black uppercase tracking-tight">With the Crew</h4>
-            </div>
-          </div>
-        </div>
+      <!-- Buttons are shrink-0 so a long dot row (one dot per photo) can never
+           squeeze or push them out of view; the dot row scrolls internally
+           instead of the whole nav row overflowing the page. -->
+      <div id="gallery-nav" class="reveal flex items-center justify-center gap-3 sm:gap-6 mt-10">
+        <button id="gallery-prev" type="button" aria-label="Previous photo" class="shrink-0 size-12 sm:size-14 rounded-full border border-ink/15 dark:border-white/15 flex items-center justify-center text-ink dark:text-white hover:bg-ink hover:text-white hover:border-transparent dark:hover:bg-primary-light dark:hover:text-ink transition-all duration-300">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <div id="gallery-dots" class="flex items-center gap-2 overflow-x-auto no-scrollbar min-w-0 flex-1 sm:flex-none sm:max-w-xs py-2"></div>
+        <button id="gallery-next" type="button" aria-label="Next photo" class="shrink-0 size-12 sm:size-14 rounded-full border border-ink/15 dark:border-white/15 flex items-center justify-center text-ink dark:text-white hover:bg-ink hover:text-white hover:border-transparent dark:hover:bg-primary-light dark:hover:text-ink transition-all duration-300">
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
       </div>
     </div>
   </section>

@@ -160,7 +160,7 @@ html, body {
 .exp-flow-text {
   position: relative;
   z-index: 1;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+  /* text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55); */
 }
 @media (hover: hover) and (pointer: fine) {
   .exp-flow-img-wrap { display: none; }
@@ -212,6 +212,39 @@ html, body {
 }
 @media (min-width: 768px) {
   .service-card-header { cursor: default; }
+}
+
+/* ---------- Gallery category filter pills ---------- */
+.gallery-filter-btn {
+  padding: 0.6rem 1.25rem;
+  border-radius: 9999px;
+  font-family: "Space Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border: 1px solid rgba(10, 10, 10, 0.15);
+  color: rgba(10, 10, 10, 0.65);
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.25s var(--ease), border-color 0.25s var(--ease), color 0.25s var(--ease), transform 0.2s var(--ease);
+}
+.dark .gallery-filter-btn {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.65);
+}
+.gallery-filter-btn:hover {
+  border-color: #65a30d;
+  color: #65a30d;
+}
+.gallery-filter-btn.is-active {
+  background: #65a30d;
+  border-color: #65a30d;
+  color: #fff;
+}
+.gallery-filter-btn:active {
+  transform: scale(0.96);
 }
 
 /* ---------- Preloader ---------- */
@@ -404,66 +437,137 @@ html, body {
 .brand-photo-frame img { transition: transform 0.6s var(--ease); }
 .brand-photo-frame:hover img { transform: scale(1.04); }
 
-/* ---------- Gallery: fun animated photo grid ---------- */
-.gallery-tile {
+/* ---------- Gallery: layered center-focused carousel ----------
+   Every photo is its own persistent slide element (never src-swapped);
+   only its transform/opacity/z-index change as activeIndex moves, via the
+   data-position attribute script.js sets on it (center / left / right /
+   far-left / far-right / hidden). Transform + opacity only — no parallax,
+   no scroll-linked or mouse-linked movement, no perspective. */
+.gallery-carousel {
   position: relative;
+  height: clamp(300px, 42vw, 550px);
+  overflow: hidden;
+  cursor: grab;
+  /* Let vertical touch-scrolling of the page through; horizontal drags are
+     captured by the pointer handlers in script.js for swipe navigation. */
+  touch-action: pan-y;
+}
+.gallery-carousel:active {
+  cursor: grabbing;
+}
+.gallery-carousel:focus-visible {
+  outline: 2px solid #65a30d;
+  outline-offset: 4px;
+}
+.gallery-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.gallery-slide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(560px, 62%);
+  height: 100%;
+  border-radius: 1.25rem;
   overflow: hidden;
   cursor: pointer;
-  /* No resting-state rotation here — the gallery rows are tightly aligned
-     (fixed row height, big + small tiles flush edge-to-edge), and any
-     baseline tilt would break that alignment. Hover keeps a small,
-     playful pop instead. */
-  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  box-shadow: 0 25px 50px -20px rgba(0, 0, 0, 0.45);
+  transition: transform 650ms cubic-bezier(0.65, 0, 0.35, 1), opacity 650ms cubic-bezier(0.65, 0, 0.35, 1);
+  will-change: transform, opacity;
 }
-.gallery-tile:hover,
-.gallery-tile:focus-visible {
-  transform: scale(1.025);
-  z-index: 5;
-  box-shadow: 0 20px 40px -12px rgba(0,0,0,0.35);
-}
-/* Parallax images: oversized (130% height) and absolutely positioned so
-   script.js can slide them vertically within their cropped frame on scroll
-   without ever exposing empty edges. Transform is owned by JS (scroll-driven
-   translateY); only filter/opacity are left to CSS transitions. */
-.gallery-tile .parallax-img {
-  position: absolute;
-  left: 0;
-  top: -15%;
+.gallery-slide img {
   width: 100%;
-  height: 130%;
+  height: 100%;
   object-fit: cover;
-  filter: grayscale(0.5) saturate(1.05);
-  transition: filter 0.5s var(--ease);
-  will-change: transform;
+  display: block;
 }
-.gallery-tile:hover .parallax-img,
-.gallery-tile:focus-visible .parallax-img {
-  filter: grayscale(0);
-}
-@media (prefers-reduced-motion: reduce) {
-  .gallery-tile .parallax-img { transform: none !important; top: 0; height: 100%; }
-}
-.gallery-tile .tile-gradient {
+.gallery-slide .gallery-caption {
   position: absolute;
-  inset: 0;
-  transition: transform 0.7s var(--ease);
+  inset: auto 0 0 0;
 }
-.gallery-tile:hover .tile-gradient {
-  transform: scale(1.08);
-}
-.gallery-tile .gallery-caption {
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
-}
-.gallery-tile:hover .gallery-caption,
-.gallery-tile:focus-visible .gallery-caption {
+/* Desktop shows 5 slides at once (far-left, left, center, right, far-right);
+   mobile deliberately shows only 3 (left, center, right) — see the
+   max-width:640px override below, which re-hides the far positions. */
+.gallery-slide[data-position="center"] {
+  transform: translate(-50%, -50%) translateX(0) scale(1);
   opacity: 1;
-  transform: translateY(0);
+  z-index: 30;
+  pointer-events: auto;
 }
-
+.gallery-slide[data-position="left"] {
+  transform: translate(-50%, -50%) translateX(-46%) scale(0.76);
+  opacity: 1;
+  z-index: 20;
+  filter: blur(2px);
+  pointer-events: auto;
+}
+.gallery-slide[data-position="right"] {
+  transform: translate(-50%, -50%) translateX(46%) scale(0.76);
+  opacity: 1;
+  filter: blur(2px);
+  z-index: 20;
+  pointer-events: auto;
+}
+.gallery-slide[data-position="far-left"] {
+  transform: translate(-50%, -50%) translateX(-82%) scale(0.56);
+  opacity: 0.75;
+  filter: blur(3px);
+  z-index: 10;
+  pointer-events: auto;
+}
+.gallery-slide[data-position="far-right"] {
+  transform: translate(-50%, -50%) translateX(82%) scale(0.56);
+  opacity: 0.75;
+  filter: blur(3px);
+  z-index: 10;
+  pointer-events: auto;
+}
+.gallery-slide[data-position="hidden"] {
+  transform: translate(-50%, -50%) translateX(0) scale(0.4);
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+@media (max-width: 1024px) {
+  .gallery-slide { width: min(420px, 60%); }
+  .gallery-slide[data-position="left"] { transform: translate(-50%, -50%) translateX(-42%) scale(0.72); }
+  .gallery-slide[data-position="right"] { transform: translate(-50%, -50%) translateX(42%) scale(0.72); }
+  .gallery-slide[data-position="far-left"] { transform: translate(-50%, -50%) translateX(-74%) scale(0.52); }
+  .gallery-slide[data-position="far-right"] { transform: translate(-50%, -50%) translateX(74%) scale(0.52); }
+}
+@media (max-width: 640px) {
+  .gallery-carousel { height: clamp(240px, 68vw, 380px); }
+  .gallery-slide { width: min(280px, 72%); }
+  .gallery-slide[data-position="left"] { transform: translate(-50%, -50%) translateX(-44%) scale(0.62); }
+  .gallery-slide[data-position="right"] { transform: translate(-50%, -50%) translateX(44%) scale(0.62); }
+  /* Only 3 slides visible on mobile — far positions collapse back off-screen. */
+  .gallery-slide[data-position="far-left"],
+  .gallery-slide[data-position="far-right"] {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .gallery-slide[data-position="far-left"] { transform: translate(-50%, -50%) translateX(-70%) scale(0.5); }
+  .gallery-slide[data-position="far-right"] { transform: translate(-50%, -50%) translateX(70%) scale(0.5); }
+}
+.gallery-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: rgba(10, 10, 10, 0.15);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.dark .gallery-dot { background: rgba(255, 255, 255, 0.2); }
+.gallery-dot.is-active {
+  background: #65a30d;
+  transform: scale(1.3);
+}
 @media (prefers-reduced-motion: reduce) {
-  .gallery-tile { transform: none !important; }
+  .gallery-slide { transition: opacity 200ms linear !important; }
 }
 
 /* Lightbox */

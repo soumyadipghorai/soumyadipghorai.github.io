@@ -1,0 +1,130 @@
+{
+  "categories": {
+    "architecture": [
+      {
+        "img": "DSC_0275.webp",
+        "label": "Golden Hour"
+      },
+      {
+        "img": "DSC_0594.webp",
+        "label": "Village Motion & Rust"
+      },
+      {
+        "img": "DSC_1011.webp",
+        "label": "Echoes of Brick & Arches"
+      },
+      {
+        "img": "DSC_1035.webp",
+        "label": "Terracotta in the Canopy"
+      },
+      {
+        "img": "DSC_3566.webp",
+        "label": "Palace of Lights"
+      },
+      {
+        "img": "DSC_7363.webp",
+        "label": "Radial Convergence"
+      }
+    ],
+    "durga_puja": [
+      {
+        "img": "DSC_0202.webp",
+        "label": "Opulence in Gold"
+      },
+      {
+        "img": "DSC_0255.webp",
+        "label": "Under the Chandelier"
+      },
+      {
+        "img": "DSC_0082.webp",
+        "label": "Clay in Chiaroscuro"
+      },
+      {
+        "img": "DSC_0147.webp",
+        "label": "Hands of the Artisan"
+      },
+      {
+        "img": "DSC_0162.webp",
+        "label": "Modern Sanctum"
+      }
+    ],
+    "landscape": [
+      {
+        "img": "DSC_4590.webp",
+        "label": "Through the Canopy"
+      },
+      {
+        "img": "DSC_4719.webp",
+        "label": "Golden Hour Winding"
+      },
+      {
+        "img": "DSC_5517.webp",
+        "label": "Cascades in the Valley"
+      },
+      {
+        "img": "DSC_5602.webp",
+        "label": "Velocity in Light"
+      },
+      {
+        "img": "DSC00041.webp",
+        "label": "Layers of Blue Ridge"
+      }
+    ],
+    "mountain": [
+      {
+        "img": "DSC00163.webp",
+        "label": "Horses of the High Valley"
+      },
+      {
+        "img": "DSC00167.webp",
+        "label": "Guardian Cairn"
+      },
+      {
+        "img": "DSC00186.webp",
+        "label": "Autumn Flora & Alpine Heights"
+      },
+      {
+        "img": "DSC00058.webp",
+        "label": "Crimson Horizon"
+      },
+      {
+        "img": "IMG_1004.webp",
+        "label": "Monochromatic Crags"
+      },
+      {
+        "img": "IMG_1008.webp",
+        "label": "Veil of Clouds"
+      },
+      {
+        "img": "IMG_1014.webp",
+        "label": "Contrast of Seasons"
+      }
+    ],
+    "others": [
+      {
+        "img": "DSC_1676.webp",
+        "label": "Midday Solitude"
+      }, 
+      {
+        "img": "DSC_5002.webp",
+        "label": "Vessels of the River"
+      },
+      {
+        "img": "DSC_3515.webp",
+        "label": "Flight Past Intricacy"
+      },
+      {
+        "img": "DSC_5102.webp",
+        "label": "Sunburst over the Dome"
+      },
+      {
+        "img": "DSC_5682.webp",
+        "label": "Azure Adiyogi"
+      },
+      {
+        "img": "DSC_6331.webp",
+        "label": "Illumination of Murudeshwar"
+      }
+    ]
+  }
+}

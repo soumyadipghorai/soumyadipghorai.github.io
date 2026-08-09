@@ -3,3 +3,5 @@ theme
 nul
 index.html.tmp.*
 task.txt
+scripts
+.github

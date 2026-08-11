@@ -395,11 +395,20 @@
        to screens under md — at md+ the body is always shown and the
        chevron is hidden, so this JS is a no-op there beyond toggling an
        unused class. */
-    var serviceCards = Array.prototype.slice.call(document.querySelectorAll(".service-card:not(.service-card--pinned-open)"));
+    var serviceCards = Array.prototype.slice.call(
+      document.querySelectorAll(
+        ".service-card:not(.service-card--pinned-open)"
+      )
+    );
     serviceCards.forEach(function (card) {
       var header = card.querySelector(".service-card-header");
       if (!header) return;
       header.addEventListener("click", function () {
+        serviceCards.forEach(function (otherCard) {
+            if (otherCard !== card) {
+                otherCard.classList.remove("is-open");
+            }
+        });
         card.classList.toggle("is-open");
       });
     });
